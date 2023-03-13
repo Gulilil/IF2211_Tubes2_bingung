@@ -1,11 +1,13 @@
 using System;
-namespace HelloWorld
+using inputoutput;
+namespace main
 {
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-      Console.WriteLine("Hello World!");    
+        Console.WriteLine("Hello World!");    
+        char[,,] charMatrix = inputoutput.ReadingFile.ReadFile();
     }
   }
 }
