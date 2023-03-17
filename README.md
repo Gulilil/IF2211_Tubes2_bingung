@@ -23,12 +23,12 @@ This program is a treasure-collect and maze-solver program. The maze used by the
 ## **How to Run The Program**
 Clone this repository </br>
 ```sh
-git clone https://github.com/Gulilil/Tubes2_-bingung....-.git
+git clone https://github.com/Gulilil/Tubes2_bingung.git
 ```
 
 Change the current directory into cloned repository </br>
 ```sh
-cd Tubes2_-bingung....-
+cd Tubes2_bingung
 ```
 
 Run the project file using dotnet </br>
