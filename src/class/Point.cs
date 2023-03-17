@@ -59,5 +59,24 @@ namespace src
         {
             this.row++;
         }
+
+        public bool isLeftOf(Point p)
+        {
+            return (this.getRow() == p.getRow() && this.getCol() == p.getCol()-1);
+        }
+        public bool isRightOf(Point p)
+        {
+            return (this.getRow() == p.getRow() && this.getCol() == p.getCol()+1);
+        }
+
+        public bool isUpOf(Point p)
+        {
+            return (this.getRow() == p.getRow()-1 && this.getCol() == p.getCol());
+        }
+        public bool isDownOf(Point p)
+        {
+            return (this.getRow() == p.getRow()+1 && this.getCol() == p.getCol());
+        }
+
     }
 }
