@@ -14,13 +14,37 @@
 ## **Program Description**
 
 ## **Required Program**
+
+| Required Program      | Reference Link |
+|-----------------------|----------------|
+| .Net                  | [.Net](#https://dotnet.microsoft.com/en-us/download) |
  
 ## **How to Run The Program**
+Clone this repository </br>
+```sh
+git clone https://github.com/Gulilil/Tubes2_-bingung....-.git
+```
+
+Change the current directory into cloned repository </br>
+```sh
+cd Tubes2_-bingung....-
+```
+
+Run the project file using dotnet </br>
+```sh
+dotnet run
+```
 
 ## **Implemented BFS and DFS Algorithm**
 
 ## **Progress Report**
 
+| Points        | Done  |
+|---------------|-------|
+| BFS Algorithm |   |
+| DFS Algorithm |   |
+| GUI           |   |
+| Bonus : TSP   |   |
 
 ## **Authors** 
 | Name | ID |
@@ -31,12 +55,14 @@
 
 
 ## **Folders and Files Description**
-    .
-    ├─ .github        
+    .   
+    ├─ .vs
     ├─ bin                              # Contains compiled program
     ├─ doc                              # Contains complete documentation file of the program
+    ├─ obj
     ├─ src                              # Contains every algorithm in constructing the program
     ├─ test                             # Contains input files for the program
+    ├─ App.csproj
     └─ README.md
 
 
