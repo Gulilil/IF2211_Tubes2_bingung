@@ -1,28 +1,32 @@
 using System;
-using System.Diagnostics;
 
 namespace src
 {
-    public class BFS
+    public class BFS : Solver
     {
-        private int nodes;
-        private int steps;
-        private char[] routes;
-        private Point[] paths;
-        private Stopwatch watch;
+        private bool TSP;
 
         // ctor
-        public BFS()
-        {
-            this.nodes = 0;
-            this.steps = 0;
-            this.routes = null;
-            this.paths = null;
+        public BFS(){
+            this.TSP = false;
         }
 
         // setter getter
+        public bool getTSP(){
+            return this.TSP;
+        }
+
+        public void setTSP(bool tsp){
+            this.TSP = tsp;
+        }
 
         // other methods
+        public void solve(Map m) {
+            if (this.TSP){
 
+            } else {
+
+            }
+        }
     }
 }
