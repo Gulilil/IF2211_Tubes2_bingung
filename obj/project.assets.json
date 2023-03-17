@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Folder Kuliah\\Sems 4\\Stima\\App\\App.csproj",
+      "projectUniqueName": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj",
       "projectName": "App",
-      "projectPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\App\\App.csproj",
+      "projectPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj",
       "packagesPath": "C:\\Users\\Juan Christopher\\.nuget\\packages\\",
-      "outputPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\App\\obj\\",
+      "outputPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Juan Christopher\\AppData\\Roaming\\NuGet\\NuGet.Config",
