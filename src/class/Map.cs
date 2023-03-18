@@ -50,6 +50,12 @@ namespace src
         public int getnTreasure() {
             return this.nTreasure;
         }
+        public char getValueAtCoordinate(Point p){
+            return this.buffer[p.getRow(), p.getCol()];
+        }
+        public void setValueAtCoordinate(Point p, char c){
+            this.buffer[p.getRow(), p.getCol()] = c;
+        }
 
         // other methods
         public void changeCurLoc(char c){
