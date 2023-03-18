@@ -7,6 +7,7 @@ namespace src
         private int row;
         private int col;
         private int nTreasure;
+        private Point startLoc;
         private Point curLoc;
         private char[,] buffer;
 
@@ -15,6 +16,7 @@ namespace src
             this.row = 0;
             this.col = 0;
             this.nTreasure = 0;
+            this.startLoc = new Point();
             this.curLoc = new Point();
             this.buffer = new char[0,0] {};
         }
@@ -23,6 +25,7 @@ namespace src
             this.row = r;
             this.col = c;
             this.nTreasure = n;
+            this.startLoc = new Point(cl.getRow(), cl.getCol());
             this.curLoc = cl;
             this.buffer = new char[0,0] {};
         }
@@ -49,6 +52,9 @@ namespace src
         }
         public int getnTreasure() {
             return this.nTreasure;
+        }
+        public char getValueAtCoordinate(int r, int c){
+            return this.buffer[r,c];
         }
         public char getValueAtCoordinate(Point p){
             return this.buffer[p.getRow(), p.getCol()];

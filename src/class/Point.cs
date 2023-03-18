@@ -59,6 +59,9 @@ namespace src
         {
             this.row++;
         }
+        public bool isTheSame(Point p){
+            return (this.getRow() == p.getRow() && this.getCol() == p.getCol());
+        }
 
         public bool isLeftOf(Point p)
         {
@@ -78,5 +81,8 @@ namespace src
             return (this.getRow() == p.getRow()+1 && this.getCol() == p.getCol());
         }
 
+        public void displayPoint(){
+            Console.WriteLine(this.row +","+this.col);
+        }
     }
 }

@@ -72,72 +72,77 @@ namespace src
             return this.watch.ElapsedMilliseconds;
         }
 
-        public void insertLastRoutes(char c){
-            char[] temp = (char[])this.routes.Clone();
-            this.routes = new char[temp.Length+1];
-            for (int i = 0; i < this.routes.Length; i++){
-                if(i == this.routes.Length-1){
-                    this.routes[i] = c;
+        public char[] insertLastRoutes(char[] routes, char c){
+            char[] temp = (char[])routes.Clone();
+            routes = new char[temp.Length+1];
+            for (int i = 0; i < routes.Length; i++){
+                if(i == routes.Length-1){
+                    routes[i] = c;
                 } else {
-                    this.routes[i] = temp[i];
+                    routes[i] = temp[i];
                 }
             }
+            return routes;
         }
 
-        public void deleteFirstRoutes(){
-            char[] temp = (char[])this.routes.Clone();
-            this.routes = new char[temp.Length-1];
-            for (int i = 0; i < this.routes.Length; i++){
-                this.routes[i] = temp[i+1];
+        public char[] deleteFirstRoutes(char[] routes){
+            char[] temp = (char[])routes.Clone();
+            routes = new char[temp.Length-1];
+            for (int i = 0; i < routes.Length; i++){
+                routes[i] = temp[i+1];
             }
+            return routes;
         }
 
-        public void insertFirstPaths(Point p)
+        public Point[] insertFirstPaths(Point[] paths, Point p)
         {
-            Point[] temp = (Point[])this.paths.Clone();
-            this.paths = new Point[temp.Length+1];
-            for (int i = 0; i < this.paths.Length; i++){
+            Point[] temp = (Point[])paths.Clone();
+            paths = new Point[temp.Length+1];
+            for (int i = 0; i < paths.Length; i++){
                 if (i == 0){
-                    this.paths[i] = p;
+                    paths[i] = p;
                 } else {
-                    this.paths[i] = temp[i-1];
+                    paths[i] = temp[i-1];
                 }
             }
+            return paths;
         }
 
-        public void insertLastPaths(Point p)
+        public Point[] insertLastPaths(Point[] paths, Point p)
         {
-            Point[] temp = (Point[])this.paths.Clone();
-            this.paths = new Point[temp.Length+1];
-            for (int i = 0; i < this.paths.Length; i++){
-                if (i == this.paths.Length){
-                    this.paths[i] = p;
+            Point[] temp = (Point[])paths.Clone();
+            paths = new Point[temp.Length+1];
+            for (int i = 0; i < paths.Length; i++){
+                if (i == paths.Length-1){
+                    paths[i] = p;
                 } else {
-                    this.paths[i] = temp[i];
+                    paths[i] = temp[i];
                 }
             }
+            return paths;
         }
 
-        public void deleteFirstPaths()
+        public Point[] deleteFirstPaths(Point[] paths)
         {
-            Point[] temp = (Point[])this.paths.Clone();
-            this.paths = new Point[temp.Length-1];
-            for (int i = 0; i < this.paths.Length; i++){
-                this.paths[i] = temp[i+1];
+            Point[] temp = (Point[])paths.Clone();
+            paths = new Point[temp.Length-1];
+            for (int i = 0; i < paths.Length; i++){
+                paths[i] = temp[i+1];
             }
+            return paths;
         }
 
         public void convertPathsToRoutes(){
             this.routes = new char[this.paths.Length-1];
             for (int i = 0; i < this.paths.Length-1; i++){
                 if (this.paths[i+1].isUpOf(this.paths[i])){
-                    this.insertLastRoutes('U');
+                    this.routes = this.insertLastRoutes(this.routes, 'U');
                 } else if (this.paths[i+1].isDownOf(this.paths[i])){
-                    this.insertLastRoutes('D');
+                    this.routes = this.insertLastRoutes(this.routes, 'D');
                 } else if (this.paths[i+1].isLeftOf(this.paths[i])){
-                    this.insertLastRoutes('L');
+                    this.routes = this.insertLastRoutes(this.routes, 'L');
                 } else if (this.paths[i+1].isRightOf(this.paths[i])){
-                    this.insertLastRoutes('R');
+                    this.routes = this.insertLastRoutes(this.routes, 'R');
                 }
             }
         }
