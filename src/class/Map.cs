@@ -114,20 +114,20 @@ namespace src
             int nCol = 0;
             int nRow = 0;
             foreach(string line in lines){
-                nRow = 0;
+                nCol = 0;
                 foreach(char c in line){
                     if(c != ' '){
-                        this.buffer[nCol, nRow] = c;
+                        this.buffer[nRow, nCol] = c;
 
                         if (c == 'T'){
                             this.nTreasure++;
                         } else if ( c == 'K'){
                             this.curLoc = new Point(nRow, nCol);
                         }
-                        nRow++;
+                        nCol++;
                     }
                 }
-                nCol++;
+                nRow++;
             }
             
             
