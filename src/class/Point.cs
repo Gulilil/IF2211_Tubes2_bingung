@@ -18,6 +18,12 @@ namespace src
             row = r; col = c;
         }
 
+        public Point(Point p)
+        {
+            this.row = p.getRow();
+            this.col = p.getCol();
+        }
+
         // setter getter
         public int getRow()
         {
@@ -40,6 +46,11 @@ namespace src
         }
 
         // other methods
+
+        public void copyPoint(Point p){
+            this.row = p.getRow();
+            this.col = p.getCol();
+        }
         public void goLeft()
         {
             this.col++;
@@ -59,6 +70,9 @@ namespace src
         {
             this.row++;
         }
+        public bool isTheSame(Point p){
+            return (this.getRow() == p.getRow() && this.getCol() == p.getCol());
+        }
 
         public bool isLeftOf(Point p)
         {
@@ -76,6 +90,11 @@ namespace src
         public bool isDownOf(Point p)
         {
             return (this.getRow() == p.getRow()+1 && this.getCol() == p.getCol());
+        }
+
+        // print and display
+        public void displayPoint(){
+            Console.Write("("+this.row +", "+this.col+")");
         }
 
     }
