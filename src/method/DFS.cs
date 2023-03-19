@@ -35,23 +35,23 @@ namespace src
         }
 
         public bool isPathAlreadyTaken(Stack<Point> paths, Point p){
-            bool found = false;
-            Stack<Point> temp = new Stack<Point>();
-            while(paths.Count > 0){
-                // moving elements to temp while checking
-                Point top = paths.Pop();
-                if (top.isTheSame(p)){
-                    found = true;
-                }
-                temp.Push(top);
-            }
-            while(temp.Count > 0)
-            {
-                // moving elements back to paths
-                Point top = temp.Pop();
-                paths.Push(top);
-            }
-            return found;
+            // bool found = false;
+            // Stack<Point> temp = new Stack<Point>();
+            // while(paths.Count > 0){
+            //     // moving elements to temp while checking
+            //     Point top = paths.Pop();
+            //     if (top.isTheSame(p)){
+            //         found = true;
+            //     }
+            //     temp.Push(top);
+            // }
+            // while(temp.Count > 0)
+            // {
+            //     // moving elements back to paths
+            //     Point top = temp.Pop();
+            //     paths.Push(top);
+            // }
+            return paths.Contains(p);
         }
 
         // public Point[] getPriorityCoordinate(Map m, Stack<Point> p){
@@ -151,41 +151,46 @@ namespace src
         
 
         public bool isAllTreasureTaken(Stack<Point> p, Point[] tLoc){
-            Stack<Point> temp = new Stack<Point>();
             for(int i = 0; i < tLoc.Length; i++){
-                bool found = false;
-                // checking
-                if (p.Count > 0){
-                    while (p.Count > 0){
-                        Point top = p.Pop();
-                        if (tLoc[i].isTheSame(top)){
-                            found = true;
-                        }
-                        temp.Push(top);
-                    }
-                } else {
-                    while (temp.Count > 0){
-                        Point top = temp.Pop();
-                        if(tLoc[i].isTheSame(top)){
-                            found = true;
-                        }
-                        p.Push(top);
-                    }
-                }
-                if (!found){
-                    // give back elements
-                    while (temp.Count > 0){
-                        Point top = temp.Pop();
-                        p.Push(top);
-                    }
+                if(!p.Contains(tLoc[i])){
                     return false;
                 }
             }
-            // Console.WriteLine("ketemu");
-            while (temp.Count > 0){
-                Point top = temp.Pop();
-                p.Push(top);
-            }
+            // Stack<Point> temp = new Stack<Point>();
+            // for(int i = 0; i < tLoc.Length; i++){
+            //     bool found = false;
+            //     // checking
+            //     if (p.Count > 0){
+            //         while (p.Count > 0){
+            //             Point top = p.Pop();
+            //             if (tLoc[i].isTheSame(top)){
+            //                 found = true;
+            //             }
+            //             temp.Push(top);
+            //         }
+            //     } else {
+            //         while (temp.Count > 0){
+            //             Point top = temp.Pop();
+            //             if(tLoc[i].isTheSame(top)){
+            //                 found = true;
+            //             }
+            //             p.Push(top);
+            //         }
+            //     }
+            //     if (!found){
+            //         // give back elements
+            //         while (temp.Count > 0){
+            //             Point top = temp.Pop();
+            //             p.Push(top);
+            //         }
+            //         return false;
+            //     }
+            // }
+            // // Console.WriteLine("ketemu");
+            // while (temp.Count > 0){
+            //     Point top = temp.Pop();
+            //     p.Push(top);
+            // }
             return true;
         }
 

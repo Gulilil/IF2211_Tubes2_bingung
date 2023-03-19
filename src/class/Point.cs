@@ -80,6 +80,23 @@ namespace src
         {
             this.row++;
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {            
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            Point p = (Point) obj;
+            return (getRow() == p.getRow() && getCol() == p.getCol());
+        }
+        
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return (row,col).GetHashCode();
+        }
         public bool isTheSame(Point p){
             return (this.getRow() == p.getRow() && this.getCol() == p.getCol());
         }
