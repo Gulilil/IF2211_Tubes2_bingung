@@ -16,7 +16,17 @@ namespace src
             Console.WriteLine("Starting Location: " + map.getCurLoc().getRow() + "," + map.getCurLoc().getCol());
 
             dfs.solve(map);
-            dfs.displayPath(dfs.getCurPath());
+            Console.WriteLine("Execution Time: " + dfs.getExecutionTime() + " ms");
+            Console.WriteLine("Total Nodes: "+ dfs.getNodes());
+            Console.WriteLine("Total Steps: "+ dfs.getSteps());
+            Console.Write("Solution Route: ");
+            dfs.displaySolutionRoutes();
+            Console.WriteLine("Solution Paths: ");
+            dfs.displaySolutionPaths();
+            
+
+
+            
         }
     }
 }

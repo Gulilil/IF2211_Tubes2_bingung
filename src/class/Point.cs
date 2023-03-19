@@ -18,6 +18,12 @@ namespace src
             row = r; col = c;
         }
 
+        public Point(Point p)
+        {
+            this.row = p.getRow();
+            this.col = p.getCol();
+        }
+
         // setter getter
         public int getRow()
         {
@@ -40,6 +46,11 @@ namespace src
         }
 
         // other methods
+
+        public void copyPoint(Point p){
+            this.row = p.getRow();
+            this.col = p.getCol();
+        }
         public void goLeft()
         {
             this.col++;
@@ -81,8 +92,10 @@ namespace src
             return (this.getRow() == p.getRow()+1 && this.getCol() == p.getCol());
         }
 
+        // print and display
         public void displayPoint(){
-            Console.WriteLine(this.row +","+this.col);
+            Console.Write("("+this.row +", "+this.col+")");
         }
+
     }
 }

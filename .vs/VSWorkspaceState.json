@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\class",
-    "\\src\\method"
+    "\\src\\method",
+    "\\test"
   ],
-  "SelectedNode": "\\src\\class",
+  "SelectedNode": "\\src\\method\\Solver.cs",
   "PreviewInSolutionExplorer": false
 }

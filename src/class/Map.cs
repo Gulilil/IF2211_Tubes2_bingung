@@ -47,8 +47,17 @@ namespace src
             return col;
         }
 
+        public void setCurLoc(Point p)
+        {
+            this.curLoc = p;
+        }
+
         public Point getCurLoc(){
             return this.curLoc;
+        }
+        public Point getStartLoc()
+        {
+            return this.startLoc;
         }
         public int getnTreasure() {
             return this.nTreasure;
@@ -76,6 +85,7 @@ namespace src
             }
         }
 
+        // print and display
         public void displayMap(){
             for(int i = 0; i < this.row; i++){
                 Console.Write("[ ");
@@ -92,6 +102,7 @@ namespace src
             }
         }
 
+        // read file
         public void IdentifyFile(string textFile)
         {
             int nCol = 0;
