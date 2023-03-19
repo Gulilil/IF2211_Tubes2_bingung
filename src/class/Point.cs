@@ -97,9 +97,6 @@ namespace src
         {
             return (row,col).GetHashCode();
         }
-        public bool isTheSame(Point p){
-            return (this.getRow() == p.getRow() && this.getCol() == p.getCol());
-        }
 
         public bool isLeftOf(Point p)
         {
