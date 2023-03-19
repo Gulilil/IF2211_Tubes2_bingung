@@ -13,8 +13,8 @@ namespace src
             map.ReadFile();
             map.getInfo();
 
-            dfs.getSolution(route, map, stackPath);
-            dfs.getInfo();
+            // dfs.getSolution(route, map, stackPath);
+            // dfs.getInfo();
 
             Console.WriteLine("==========================");
             Console.WriteLine("==========================");

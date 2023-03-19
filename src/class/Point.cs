@@ -6,24 +6,22 @@ namespace src
     {
         private int row;
         private int col;
-        private int visitedCount;
 
         // ctor
         public Point ()
         {
-            row = 0; col = 0; visitedCount = 0;
+            row = 0; col = 0; 
         }
 
         public Point(int r, int c)
         {
-            row = r; col = c; visitedCount = 0;
+            row = r; col = c; 
         }
 
         public Point(Point p)
         {
             this.row = p.getRow();
             this.col = p.getCol();
-            this.visitedCount = 0;
         }
 
         // setter getter
@@ -36,9 +34,6 @@ namespace src
         {
             return col;
         }
-        public int getVisitedCount(){
-            return this.visitedCount;
-        }
 
         public void setRow(int r)
         {
@@ -49,14 +44,8 @@ namespace src
         {
             this.col = c;
         }
-        public void setVisitedCount(int vc){
-            this.visitedCount = vc;
-        }
 
         // other methods
-        public void increaseVisitedCount(){
-            this.visitedCount++;
-        }
         public void copyPoint(Point p){
             this.row = p.getRow();
             this.col = p.getCol();
@@ -97,10 +86,6 @@ namespace src
         {
             return (row,col).GetHashCode();
         }
-        public bool isTheSame(Point p){
-            return (this.getRow() == p.getRow() && this.getCol() == p.getCol());
-        }
-
         public bool isLeftOf(Point p)
         {
             return (this.getRow() == p.getRow() && this.getCol() == p.getCol()-1);
