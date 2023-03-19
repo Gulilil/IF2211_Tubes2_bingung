@@ -14,13 +14,7 @@ namespace src
             map.getInfo();
 
             dfs.getSolution(route, map, stackPath);
-            Console.WriteLine("Execution Time: " + dfs.getExecutionTime() + " ms");
-            Console.WriteLine("Total Nodes: "+ dfs.getNodes());
-            Console.WriteLine("Total Steps: "+ dfs.getSteps());
-            Console.Write("Solution Route: ");
-            dfs.displaySolutionRoutes();
-            Console.WriteLine("Solution Paths: ");
-            dfs.displaySolutionPaths();
+            dfs.getInfo();
 
             Console.WriteLine("==========================");
             Console.WriteLine("==========================");
