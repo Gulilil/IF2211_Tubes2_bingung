@@ -7,6 +7,7 @@ namespace src
         private int row;
         private int col;
         private int nTreasure;
+        private Point[] treasureLocs;
         private Point startLoc;
         private Point curLoc;
         private char[,] buffer;
@@ -16,19 +17,21 @@ namespace src
             this.row = 0;
             this.col = 0;
             this.nTreasure = 0;
+            this.treasureLocs = new Point[] {};
             this.startLoc = new Point();
             this.curLoc = new Point();
             this.buffer = new char[0,0] {};
         }
 
-        public Map(int r, int c, int n, Point cl){
-            this.row = r;
-            this.col = c;
-            this.nTreasure = n;
-            this.startLoc = new Point(cl.getRow(), cl.getCol());
-            this.curLoc = cl;
-            this.buffer = new char[0,0] {};
-        }
+        // public Map(int r, int c, int n, Point cl){
+        //     this.row = r;
+        //     this.col = c;
+        //     this.nTreasure = n;
+        //     this.startLoc = new Point(cl.getRow(), cl.getCol());
+        //     this.treasureLocs = new Point[] {};
+        //     this.curLoc = cl;
+        //     this.buffer = new char[0,0] {};
+        // }
 
         // setter getter
         public void setRow(int r){
@@ -71,6 +74,9 @@ namespace src
         public void setValueAtCoordinate(Point p, char c){
             this.buffer[p.getRow(), p.getCol()] = c;
         }
+        public Point[] getTreasureLocations(){
+            return this.treasureLocs;
+        }
 
         // other methods
         public void changeCurLoc(char c){
@@ -83,6 +89,33 @@ namespace src
             } else if (c == 'D'){
                 this.curLoc.goDown();
             }
+        }
+
+        public void addTreasureLocation(int r, int c){
+            Point treasure = new Point(r,c);
+            Point[] temp = (Point[])this.treasureLocs.Clone();
+            this.treasureLocs = new Point[temp.Length+1];
+            for (int i = 0; i < this.treasureLocs.Length; i++){
+                if (i == this.treasureLocs.Length -1){
+                    this.treasureLocs[i] = treasure;
+                } else {
+                    this.treasureLocs[i] = temp[i];
+                }
+            }
+        }
+
+        public void getInfo(){
+            System.Console.WriteLine("==========================");
+            displayMap();
+            Console.WriteLine("Row: " + getRow());
+            Console.WriteLine("Col: " + getCol());
+            Console.WriteLine("Treasure Amount: " + getnTreasure());
+            Console.Write("Treasure Locations: ");
+            displayTreasureLocations();
+            Console.Write("Starting Location: ");
+            this.startLoc.displayPoint();
+            System.Console.WriteLine();
+            System.Console.WriteLine("==========================");
         }
 
         // print and display
@@ -100,6 +133,19 @@ namespace src
                 Console.Write(" ]");
                 Console.WriteLine();
             }
+        }
+
+        public void displayTreasureLocations(){
+            Console.Write("(");
+            for (int i = 0; i < this.treasureLocs.Length ; i++){
+                if (i == this.treasureLocs.Length - 1){
+                    this.treasureLocs[i].displayPoint();
+                } else {
+                    this.treasureLocs[i].displayPoint();
+                    Console.Write(", ");
+                }
+            }
+            Console.WriteLine(")");
         }
 
         // read file
@@ -144,6 +190,7 @@ namespace src
 
                         if (c == 'T'){
                             this.nTreasure++;
+                            addTreasureLocation(nRow, nCol);
                         } else if ( c == 'K'){
                             this.curLoc = new Point(nRow, nCol);
                         }
@@ -152,7 +199,7 @@ namespace src
                 }
                 nRow++;
             }
-            
+            this.startLoc.copyPoint(this.curLoc);
             
         }
     }

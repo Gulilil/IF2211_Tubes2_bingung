@@ -7,15 +7,13 @@ namespace src
         public static void Main(string[] args){
             Map map = new Map();
             DFS dfs = new DFS();
+            Route route = new Route();
+            Stack<Point> stackPath = new Stack<Point> ();
 
             map.ReadFile();
-            map.displayMap();
-            Console.WriteLine("Row: " + map.getRow());
-            Console.WriteLine("Col: " + map.getCol());
-            Console.WriteLine("Treasure Amount: " + map.getnTreasure());
-            Console.WriteLine("Starting Location: " + map.getCurLoc().getRow() + "," + map.getCurLoc().getCol());
+            map.getInfo();
 
-            dfs.solve(map);
+            dfs.getSolution(route, map, stackPath);
             Console.WriteLine("Execution Time: " + dfs.getExecutionTime() + " ms");
             Console.WriteLine("Total Nodes: "+ dfs.getNodes());
             Console.WriteLine("Total Steps: "+ dfs.getSteps());
@@ -23,10 +21,12 @@ namespace src
             dfs.displaySolutionRoutes();
             Console.WriteLine("Solution Paths: ");
             dfs.displaySolutionPaths();
+
+            Console.WriteLine("==========================");
+            Console.WriteLine("==========================");
             
 
-
-            
         }
+
     }
 }
