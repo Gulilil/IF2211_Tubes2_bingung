@@ -23,6 +23,17 @@ namespace src
 
         // other methods
 
+        public void getInfo(){
+            System.Console.WriteLine("==========================");
+            Console.WriteLine("Execution Time: " + getExecutionTime() + " ms");
+            Console.WriteLine("Total Nodes: "+ getNodes());
+            Console.WriteLine("Total Steps: "+ getSteps());
+            Console.Write("Solution Route: ");
+            displaySolutionRoutes();
+            Console.WriteLine("Solution Paths: ");
+            displaySolutionPaths();
+        }
+
         public bool isPathAlreadyTaken(Stack<Point> paths, Point p){
             bool found = false;
             Stack<Point> temp = new Stack<Point>();
@@ -42,6 +53,25 @@ namespace src
             }
             return found;
         }
+
+        // public Point[] getPriorityCoordinate(Map m, Stack<Point> p){
+        //     Point[] coordinates = new Point[] {};
+
+        //     if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
+        //     {
+        //         // check Up
+        //         Point newCl = new Point(cl);
+        //         newCl.goUp();
+        //         if (!isPathAlreadyTaken(p, newCl)){
+        //             m.setCurLoc(newCl);
+        //             r.setUpChild(newCl);
+        //             // Console.WriteLine("Atas");
+        //         }
+        //     }
+
+
+        //     return coordinates;
+        // }
 
         
         public Stack<Point> solve(Route r, Map m, Stack<Point> p){
@@ -67,7 +97,7 @@ namespace src
                     r.setUpChild(newCl);
                     // Console.WriteLine("Atas");
                     if (isAllTreasureTaken(solve(r.getUpChild(), m, p), m.getTreasureLocations())){
-                        return solve(r.getUpChild(), m, p);
+                        return p;
                     }
                 }
             }
@@ -81,7 +111,7 @@ namespace src
                     r.setLeftChild(newCl);
                     // Console.WriteLine("Kiri");
                     if (isAllTreasureTaken(solve(r.getLeftChild(), m, p), m.getTreasureLocations())){
-                        return solve(r.getLeftChild(), m, p);
+                        return p;
                     }
                 }
             }
@@ -95,7 +125,7 @@ namespace src
                     r.setRightChild(newCl);
                     // Console.WriteLine("Kanan");
                     if (isAllTreasureTaken(solve(r.getRightChild(), m, p), m.getTreasureLocations())){
-                        return solve(r.getRightChild(), m, p);
+                        return p;
                     }
                 }
             }
@@ -109,7 +139,7 @@ namespace src
                     r.setDownChild(newCl);
                     // Console.WriteLine("Bawah");
                     if (isAllTreasureTaken(solve(r.getDownChild(), m, p), m.getTreasureLocations())){
-                        return solve(r.getDownChild(), m, p);
+                        return p;
                     }
                 }
             }

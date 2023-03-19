@@ -115,7 +115,6 @@ namespace src
             Console.Write("Starting Location: ");
             this.startLoc.displayPoint();
             System.Console.WriteLine();
-            System.Console.WriteLine("==========================");
         }
 
         // print and display

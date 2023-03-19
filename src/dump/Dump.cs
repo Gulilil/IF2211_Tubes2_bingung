@@ -99,7 +99,80 @@ DFS
             }
         }
 
+        public Stack<Point> solve(Route r, Map m, Stack<Point> p){
+            Point cl = m.getCurLoc();
+            r.setParent(cl);
+            p.Push(r.getParent());
+            nodes++;
+            // cl.displayPoint(); Console.WriteLine();
+            // displayPath(p);
 
+            if (isAllTreasureTaken(p, m.getTreasureLocations())){
+                // System.Console.WriteLine("hehe");
+                return p;
+            }
+
+            if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
+            {
+                // check Up
+                Point newCl = new Point(cl);
+                newCl.goUp();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setUpChild(newCl);
+                    // Console.WriteLine("Atas");
+                    if (isAllTreasureTaken(solve(r.getUpChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getCol() != 0 && m.getValueAtCoordinate(cl.getRow(), cl.getCol()-1) != 'X')
+            {
+                // check Left
+                Point newCl = new Point(cl);
+                newCl.goLeft();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setLeftChild(newCl);
+                    // Console.WriteLine("Kiri");
+                    if (isAllTreasureTaken(solve(r.getLeftChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getCol() != m.getCol() - 1 && m.getValueAtCoordinate(cl.getRow(), cl.getCol() + 1) != 'X')
+            {
+                // check Right
+                Point newCl = new Point(cl);
+                newCl.goRight();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setRightChild(newCl);
+                    // Console.WriteLine("Kanan");
+                    if (isAllTreasureTaken(solve(r.getRightChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getRow() != m.getRow() - 1 && m.getValueAtCoordinate(cl.getRow() + 1, cl.getCol()) != 'X')
+            {
+                // check Down
+                Point newCl = new Point(cl);
+                newCl.goDown();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setDownChild(newCl);
+                    // Console.WriteLine("Bawah");
+                    if (isAllTreasureTaken(solve(r.getDownChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            // backtrack
+            // Console.WriteLine("Mentok");
+            Point dump = p.Pop();
+            return new Stack<Point> ();
+        }
 
 
 
