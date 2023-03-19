@@ -31,13 +31,12 @@ namespace src
             return true;
         }
 
-        public List<Point> solve(Route r, Map m){
+        public void solve(Route r, Map m){
             Queue<Point> q = new Queue<Point>(); 
             q.Enqueue(m.getStartLoc());
             while (q.Count > 0){
                 m.setCurLoc(q.Dequeue());
                 Point cl = m.getCurLoc();
-                visits[cl] = 1;
                 if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
                 {
                     // check Up
