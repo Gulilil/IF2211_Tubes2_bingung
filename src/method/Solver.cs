@@ -5,11 +5,11 @@ namespace src
 {
     public class Solver
     {
-        private int nodes;
-        private int steps;
-        private char[] solRoutes;
-        private Point[] solPaths;
-        private Stopwatch watch;
+        protected int nodes;
+        protected int steps;
+        protected char[] solRoutes;
+        protected Point[] solPaths;
+        protected Stopwatch watch;
 
         // ctor
         public Solver()
@@ -34,11 +34,11 @@ namespace src
         public int getSteps(){
             return this.steps;
         }
-        public char[] getRoutes()
+        public char[] getSolRoutes()
         {
             return this.solRoutes;
         }
-        public Point[] getPaths()
+        public Point[] getSolPaths()
         {
             return this.solPaths;
         }
@@ -173,8 +173,6 @@ namespace src
                         Console.WriteLine(")");
                     }
                 }
-
-
 
             }
         }
