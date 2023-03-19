@@ -73,6 +73,20 @@ namespace src {
             }
             return count;
         }
+
+        public int getNodesAmount(){
+            int count = 0;
+            if (getNChild() == 0){
+                return 1;
+            } else {
+                for (int i = 0; i < getNChild(); i ++){
+                    if (children[i] != null){
+                        count += children[i].getNodesAmount();
+                    }
+                }
+                return count;
+            }
+        }
     }
 
 
