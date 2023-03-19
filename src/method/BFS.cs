@@ -31,11 +31,7 @@ namespace src
             return true;
         }
         public void solve(Map m) {
-            if (this.TSP){
-
-            } else {
-
-            }
+            
         }
     }
 }
