@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj": {}
+    "C:\\Tabitha\\Programs\\sem4\\STIMA\\Tubes2_bingung\\App.csproj": {}
   },
   "projects": {
-    "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj": {
+    "C:\\Tabitha\\Programs\\sem4\\STIMA\\Tubes2_bingung\\App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj",
+        "projectUniqueName": "C:\\Tabitha\\Programs\\sem4\\STIMA\\Tubes2_bingung\\App.csproj",
         "projectName": "App",
-        "projectPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\App.csproj",
-        "packagesPath": "C:\\Users\\Juan Christopher\\.nuget\\packages\\",
-        "outputPath": "C:\\Folder Kuliah\\Sems 4\\Stima\\Tubes2\\obj\\",
+        "projectPath": "C:\\Tabitha\\Programs\\sem4\\STIMA\\Tubes2_bingung\\App.csproj",
+        "packagesPath": "C:\\Users\\tabit\\.nuget\\packages\\",
+        "outputPath": "C:\\Tabitha\\Programs\\sem4\\STIMA\\Tubes2_bingung\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Juan Christopher\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\tabit\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
