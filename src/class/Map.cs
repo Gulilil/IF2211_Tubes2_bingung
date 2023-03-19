@@ -10,7 +10,7 @@ namespace src
         private Point[] treasureLocs;
         private Point startLoc;
         private Point curLoc;
-        private char[,] buffer;
+        private Tile[,] buffer;
 
         // ctor
         public Map() {
@@ -20,7 +20,7 @@ namespace src
             this.treasureLocs = new Point[] {};
             this.startLoc = new Point();
             this.curLoc = new Point();
-            this.buffer = new char[0,0] {};
+            this.buffer = new Tile[0,0] {};
         }
 
         // public Map(int r, int c, int n, Point cl){
@@ -66,13 +66,16 @@ namespace src
             return this.nTreasure;
         }
         public char getValueAtCoordinate(int r, int c){
-            return this.buffer[r,c];
+            return this.buffer[r,c].getValue();
         }
         public char getValueAtCoordinate(Point p){
-            return this.buffer[p.getRow(), p.getCol()];
+            return this.buffer[p.getRow(), p.getCol()].getValue();
         }
         public void setValueAtCoordinate(Point p, char c){
-            this.buffer[p.getRow(), p.getCol()] = c;
+            this.buffer[p.getRow(), p.getCol()].setValue(c);
+        }
+        public void increaseVCAtCoordinate(Point p){
+            this.buffer[p.getRow(), p.getCol()].increaseVisitedCount();
         }
         public Point[] getTreasureLocations(){
             return this.treasureLocs;
@@ -123,9 +126,9 @@ namespace src
                 Console.Write("[ ");
                 for (int j = 0; j < this.col; j++){
                     if (j == this.col-1){
-                        Console.Write(this.buffer[i,j]);
+                        Console.Write(this.buffer[i,j].getValue());
                     } else {
-                        Console.Write(this.buffer[i,j]);
+                        Console.Write(this.buffer[i,j].getValue());
                         Console.Write(' ');
                     }
                 }
@@ -176,7 +179,12 @@ namespace src
             string fullPath = path + "/test/" +fileName;
 
             IdentifyFile(fullPath);
-            this.buffer = new char[this.row, this.col];
+            this.buffer = new Tile[this.row, this.col];
+            for (int i = 0; i < row ; i++){
+                for (int j = 0; j < col; j++){
+                    this.buffer[i,j] = new Tile();
+                }
+            }
             string[] lines = File.ReadAllLines(fullPath);
 
             int nCol = 0;
@@ -185,7 +193,7 @@ namespace src
                 nCol = 0;
                 foreach(char c in line){
                     if(c != ' '){
-                        this.buffer[nRow, nCol] = c;
+                        this.buffer[nRow, nCol].setValue(c);
 
                         if (c == 'T'){
                             this.nTreasure++;

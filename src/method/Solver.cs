@@ -56,17 +56,27 @@ namespace src
             return this.watch.ElapsedMilliseconds;
         }
 
+        public void getInfo(){
+            System.Console.WriteLine("==========================");
+            Console.WriteLine("Execution Time: " + getExecutionTime() + " ms");
+            Console.WriteLine("Total Nodes: "+ getNodes());
+            Console.WriteLine("Total Steps: "+ getSteps());
+            Console.Write("Solution Route: ");
+            displaySolutionRoutes();
+            Console.WriteLine("Solution Paths: ");
+            displaySolutionPaths();
+        }
+
         public char[] insertLastRoutes(char[] routes, char c){
-            char[] temp = (char[])routes.Clone();
-            routes = new char[temp.Length+1];
-            for (int i = 0; i < routes.Length; i++){
-                if(i == routes.Length-1){
-                    routes[i] = c;
+            char[] temp = new char[routes.Length+1];
+            for (int i = 0; i < temp.Length; i++){
+                if(i == temp.Length-1){
+                    temp[i] = c;
                 } else {
-                    routes[i] = temp[i];
+                    temp[i] = routes[i];
                 }
             }
-            return routes;
+            return temp;
         }
 
         public char[] deleteFirstRoutes(char[] routes){
@@ -78,32 +88,31 @@ namespace src
             return routes;
         }
 
-        public Point[] insertFirstPaths(Point[] paths, Point p)
-        {
-            Point[] temp = (Point[])paths.Clone();
-            paths = new Point[temp.Length+1];
-            for (int i = 0; i < paths.Length; i++){
-                if (i == 0){
-                    paths[i] = p;
-                } else {
-                    paths[i] = temp[i-1];
-                }
-            }
-            return paths;
-        }
+        // public Point[] insertFirstPaths(Point[] paths, Point p)
+        // {
+        //     Point[] temp = (Point[])paths.Clone();
+        //     paths = new Point[temp.Length+1];
+        //     for (int i = 0; i < paths.Length; i++){
+        //         if (i == 0){
+        //             paths[i] = p;
+        //         } else {
+        //             paths[i] = temp[i-1];
+        //         }
+        //     }
+        //     return paths;
+        // }
 
         public Point[] insertLastPaths(Point[] paths, Point p)
         {
-            Point[] temp = (Point[])paths.Clone();
-            paths = new Point[temp.Length+1];
-            for (int i = 0; i < paths.Length; i++){
-                if (i == paths.Length-1){
-                    paths[i] = p;
+            Point[] temp = new Point[paths.Length+1];
+            for (int i = 0; i < temp.Length; i++){
+                if (i == temp.Length-1){
+                    temp[i] = p;
                 } else {
-                    paths[i] = temp[i];
+                    temp[i] = paths[i];
                 }
             }
-            return paths;
+            return temp;
         }
 
         public Point[] deleteFirstPaths(Point[] paths)

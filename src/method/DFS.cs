@@ -23,126 +23,91 @@ namespace src
 
         // other methods
 
-        public void getInfo(){
-            System.Console.WriteLine("==========================");
-            Console.WriteLine("Execution Time: " + getExecutionTime() + " ms");
-            Console.WriteLine("Total Nodes: "+ getNodes());
-            Console.WriteLine("Total Steps: "+ getSteps());
-            Console.Write("Solution Route: ");
-            displaySolutionRoutes();
-            Console.WriteLine("Solution Paths: ");
-            displaySolutionPaths();
-        }
-
         public bool isPathAlreadyTaken(Stack<Point> paths, Point p){
-            // bool found = false;
-            // Stack<Point> temp = new Stack<Point>();
-            // while(paths.Count > 0){
-            //     // moving elements to temp while checking
-            //     Point top = paths.Pop();
-            //     if (top.isTheSame(p)){
-            //         found = true;
-            //     }
-            //     temp.Push(top);
-            // }
-            // while(temp.Count > 0)
-            // {
-            //     // moving elements back to paths
-            //     Point top = temp.Pop();
-            //     paths.Push(top);
-            // }
             return paths.Contains(p);
         }
 
-        // public Point[] getPriorityCoordinate(Map m, Stack<Point> p){
-        //     Point[] coordinates = new Point[] {};
-
-        //     if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
-        //     {
-        //         // check Up
-        //         Point newCl = new Point(cl);
-        //         newCl.goUp();
-        //         if (!isPathAlreadyTaken(p, newCl)){
-        //             m.setCurLoc(newCl);
-        //             r.setUpChild(newCl);
-        //             // Console.WriteLine("Atas");
+        // public Point[] sortPriorityCoordinate(Point[] p){
+        //     // using insertion sort
+        //     if (p.Length > 1){
+        //         for (int i = 1; i < p.Length-1; i++){
+        //             int j = i-1;
+        //             Point temp = p[j];
+        //             while(temp.getVisitedCount() < p[j].getVisitedCount() && j > 0){
+        //                 p[j+1].copyPoint(p[j]);
+        //                 j = j-1;
+        //             }
+        //             if (temp.getVisitedCount() >= p[j].getVisitedCount()){
+        //                 p[j+1].copyPoint(temp);
+        //             } else {
+        //                 p[j+1].copyPoint(p[j]);
+        //                 p[j].copyPoint(temp);
+        //             }
         //         }
         //     }
-
-
-        //     return coordinates;
+        //     return p;
         // }
 
-        
-        public Stack<Point> solve(Route r, Map m, Stack<Point> p){
+        public Point[] getPriorityCoordinates(Map m){
+            Point[] coordinates = new Point[] {};
             Point cl = m.getCurLoc();
-            r.setParent(cl);
-            p.Push(r.getParent());
-            nodes++;
-            // cl.displayPoint(); Console.WriteLine();
-            // displayPath(p);
-
-            if (isAllTreasureTaken(p, m.getTreasureLocations())){
-                // System.Console.WriteLine("hehe");
-                return p;
-            }
 
             if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
             {
                 // check Up
                 Point newCl = new Point(cl);
-                newCl.goUp();
-                if (!isPathAlreadyTaken(p, newCl)){
-                    m.setCurLoc(newCl);
-                    r.setUpChild(newCl);
-                    // Console.WriteLine("Atas");
-                    if (isAllTreasureTaken(solve(r.getUpChild(), m, p), m.getTreasureLocations())){
-                        return p;
-                    }
-                }
+                newCl.goUp();  
+                coordinates = insertLastPaths(coordinates, newCl);     
             }
             if (cl.getCol() != 0 && m.getValueAtCoordinate(cl.getRow(), cl.getCol()-1) != 'X')
             {
                 // check Left
                 Point newCl = new Point(cl);
                 newCl.goLeft();
-                if (!isPathAlreadyTaken(p, newCl)){
-                    m.setCurLoc(newCl);
-                    r.setLeftChild(newCl);
-                    // Console.WriteLine("Kiri");
-                    if (isAllTreasureTaken(solve(r.getLeftChild(), m, p), m.getTreasureLocations())){
-                        return p;
-                    }
-                }
+                coordinates = insertLastPaths(coordinates, newCl);   
             }
             if (cl.getCol() != m.getCol() - 1 && m.getValueAtCoordinate(cl.getRow(), cl.getCol() + 1) != 'X')
             {
                 // check Right
                 Point newCl = new Point(cl);
                 newCl.goRight();
-                if (!isPathAlreadyTaken(p, newCl)){
-                    m.setCurLoc(newCl);
-                    r.setRightChild(newCl);
-                    // Console.WriteLine("Kanan");
-                    if (isAllTreasureTaken(solve(r.getRightChild(), m, p), m.getTreasureLocations())){
-                        return p;
-                    }
-                }
+                coordinates = insertLastPaths(coordinates, newCl);   
             }
             if (cl.getRow() != m.getRow() - 1 && m.getValueAtCoordinate(cl.getRow() + 1, cl.getCol()) != 'X')
             {
                 // check Down
                 Point newCl = new Point(cl);
                 newCl.goDown();
-                if (!isPathAlreadyTaken(p, newCl)){
-                    m.setCurLoc(newCl);
-                    r.setDownChild(newCl);
-                    // Console.WriteLine("Bawah");
-                    if (isAllTreasureTaken(solve(r.getDownChild(), m, p), m.getTreasureLocations())){
-                        return p;
-                    }
-                }
+                coordinates = insertLastPaths(coordinates, newCl);   
             }
+            // coordinates = sortPriorityCoordinate(coordinates);
+
+            return coordinates;
+        }
+
+        
+        public Stack<Point> solve(Map m, Stack<Point> p){
+            Point cl = m.getCurLoc();
+            p.Push(cl);
+            nodes++;
+            cl.displayPoint(); Console.WriteLine();
+            displayPath(p);
+
+            if (isAllTreasureTaken(p, m.getTreasureLocations())){
+                // System.Console.WriteLine("hehe");
+                return p;
+            }
+
+            int iteration = 0;
+            Point[] availableCoordinates = getPriorityCoordinates(m);
+            while(iteration < availableCoordinates.Length){
+                m.setCurLoc(availableCoordinates[iteration]);
+                if (isAllTreasureTaken(solve(m, p), m.getTreasureLocations())){
+                    return p;
+                }
+                iteration++;
+            }
+
             // backtrack
             // Console.WriteLine("Mentok");
             Point dump = p.Pop();
@@ -156,47 +121,12 @@ namespace src
                     return false;
                 }
             }
-            // Stack<Point> temp = new Stack<Point>();
-            // for(int i = 0; i < tLoc.Length; i++){
-            //     bool found = false;
-            //     // checking
-            //     if (p.Count > 0){
-            //         while (p.Count > 0){
-            //             Point top = p.Pop();
-            //             if (tLoc[i].isTheSame(top)){
-            //                 found = true;
-            //             }
-            //             temp.Push(top);
-            //         }
-            //     } else {
-            //         while (temp.Count > 0){
-            //             Point top = temp.Pop();
-            //             if(tLoc[i].isTheSame(top)){
-            //                 found = true;
-            //             }
-            //             p.Push(top);
-            //         }
-            //     }
-            //     if (!found){
-            //         // give back elements
-            //         while (temp.Count > 0){
-            //             Point top = temp.Pop();
-            //             p.Push(top);
-            //         }
-            //         return false;
-            //     }
-            // }
-            // // Console.WriteLine("ketemu");
-            // while (temp.Count > 0){
-            //     Point top = temp.Pop();
-            //     p.Push(top);
-            // }
             return true;
         }
 
         public void getSolution(Route r, Map m, Stack<Point> p){
             startTime();
-            Stack<Point> solution = solve(r, m, p);
+            Stack<Point> solution = solve(m, p);
 
             this.steps = solution.Count;
             copySolutionPathsDFS(solution);
@@ -220,6 +150,83 @@ namespace src
                 paths.Push(top);
             }
         }
+
+        public Stack<Point> solveTest(Route r, Map m, Stack<Point> p){
+            Point cl = m.getCurLoc();
+            r.setParent(cl);
+            p.Push(r.getParent());
+            nodes++;
+            // cl.displayPoint(); Console.WriteLine();
+            // displayPath(p);
+
+            if (isAllTreasureTaken(p, m.getTreasureLocations())){
+                // System.Console.WriteLine("hehe");
+                return p;
+            }
+
+            if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
+            {
+                // check Up
+                Point newCl = new Point(cl);
+                newCl.goUp();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setUpChild(newCl);
+                    // Console.WriteLine("Atas");
+                    if (isAllTreasureTaken(solveTest(r.getUpChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getCol() != 0 && m.getValueAtCoordinate(cl.getRow(), cl.getCol()-1) != 'X')
+            {
+                // check Left
+                Point newCl = new Point(cl);
+                newCl.goLeft();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setLeftChild(newCl);
+                    // Console.WriteLine("Kiri");
+                    if (isAllTreasureTaken(solveTest(r.getLeftChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getCol() != m.getCol() - 1 && m.getValueAtCoordinate(cl.getRow(), cl.getCol() + 1) != 'X')
+            {
+                // check Right
+                Point newCl = new Point(cl);
+                newCl.goRight();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setRightChild(newCl);
+                    // Console.WriteLine("Kanan");
+                    if (isAllTreasureTaken(solveTest(r.getRightChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            if (cl.getRow() != m.getRow() - 1 && m.getValueAtCoordinate(cl.getRow() + 1, cl.getCol()) != 'X')
+            {
+                // check Down
+                Point newCl = new Point(cl);
+                newCl.goDown();
+                if (!isPathAlreadyTaken(p, newCl)){
+                    m.setCurLoc(newCl);
+                    r.setDownChild(newCl);
+                    // Console.WriteLine("Bawah");
+                    if (isAllTreasureTaken(solveTest(r.getDownChild(), m, p), m.getTreasureLocations())){
+                        return p;
+                    }
+                }
+            }
+            // backtrack
+            // Console.WriteLine("Mentok");
+            Point dump = p.Pop();
+            return new Stack<Point> ();
+        }
+
+
     }
 
 }
