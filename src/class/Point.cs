@@ -88,7 +88,8 @@ namespace src
             {
                 return false;
             }
-            return (getRow() == obj.getRow() && getCol() == obj.getCol());
+            Point p = (Point) obj;
+            return (getRow() == p.getRow() && getCol() == p.getCol());
         }
         
         // override object.GetHashCode
