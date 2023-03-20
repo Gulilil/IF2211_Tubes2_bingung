@@ -16,6 +16,7 @@ namespace src
 
             // dfs.getSolution(route, map, stackPath);
             // dfs.getInfo();
+            bfs.setTSP(true);
             bfs.getSolution(map);
             bfs.getInfo();
 
