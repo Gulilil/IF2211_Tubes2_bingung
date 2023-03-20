@@ -6,14 +6,16 @@ namespace src
     {
         public static void Main(string[] args){
             Map map = new Map();
-            DFS dfs = new DFS();
-            BFS bfs = new BFS();
-
             map.ReadFile();
             map.getInfo();
 
+            BFS bfs = new BFS();
             bfs.getSolution(map);
             bfs.getInfo();
+
+
+            map.ReadFile();
+            DFS dfs = new DFS();
             dfs.getSolution(map);
             dfs.getInfo();
 
