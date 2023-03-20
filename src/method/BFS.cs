@@ -213,18 +213,6 @@ namespace src
         // print and display
         public void displayPath(Stack<Point> paths)
         {
-            // Stack<Point> temp = new Stack<Point>();
-            // while (paths.Count > 0)
-            // {
-            //     Point top = paths.Pop();
-            //     top.displayPoint();
-            //     temp.Push(top);
-            // }
-            // while (temp.Count > 0)
-            // {
-            //     Point top = temp.Pop();
-            //     paths.Push(top);
-            // }
             foreach (Point element in paths){
                 element.displayPoint();
             }

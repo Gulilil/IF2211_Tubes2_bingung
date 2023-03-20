@@ -6,19 +6,18 @@ namespace src
     {
         public static void Main(string[] args){
             Map map = new Map();
-            DFS dfs = new DFS();
-            BFS bfs = new BFS();
-            Route route = new Route();
-            Stack<Point> stackPath = new Stack<Point> ();
-
             map.ReadFile();
             map.getInfo();
 
-            // dfs.getSolution(route, map, stackPath);
-            // dfs.getInfo();
-            bfs.setTSP(true);
+            BFS bfs = new BFS();
             bfs.getSolution(map);
             bfs.getInfo();
+
+
+            map.ReadFile();
+            DFS dfs = new DFS();
+            dfs.getSolution(map);
+            dfs.getInfo();
 
             Console.WriteLine("==========================");
             Console.WriteLine("==========================");
