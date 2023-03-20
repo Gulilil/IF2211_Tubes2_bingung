@@ -42,73 +42,75 @@ namespace src
                 // System.Console.WriteLine(count);
                 m.setCurLoc(temp.Peek());
                 Point cl = m.getCurLoc();
-                // displayPath(temp);
+                displayPath(temp);
                 // m.increaseVCAtCoordinate(cl);
                 bool noOtherPath = true;
-                while(noOtherPath){
-                    if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
-                    {
-                        // check Up
-                        // System.Console.WriteLine("Up");
-                        Point newLoc = new Point(cl);
-                        newLoc.goUp();
-                        if (!temp.Contains(newLoc) || noOtherPath){
-                            Stack<Point> temp2 = new Stack<Point>(temp);
-                            Stack<Point> temp1 = new Stack<Point>(temp2);
-                            temp1.Push(newLoc);
-                            q.Enqueue(temp1);
-                            noOtherPath = false;
+                for(int i = 0; i < 2; i++){
+                    if (noOtherPath){
+                        if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
+                        {
+                            // check Up
+                            // System.Console.WriteLine("Up");
+                            Point newLoc = new Point(cl);
+                            newLoc.goUp();
+                            if (!temp.Contains(newLoc) || (i == 1 && noOtherPath)){
+                                Stack<Point> temp2 = new Stack<Point>(temp);
+                                Stack<Point> temp1 = new Stack<Point>(temp2);
+                                temp1.Push(newLoc);
+                                q.Enqueue(temp1);
+                                noOtherPath = false;
+                            }
                         }
-                    }
-                    if (cl.getCol() != 0 && m.getValueAtCoordinate(cl.getRow(), cl.getCol()-1) != 'X')
-                    {
-                        // check Left
-                        // System.Console.WriteLine("Left");
-                        Point newLoc = new Point(cl);
-                        newLoc.goLeft();
-                        if (!temp.Contains(newLoc) || noOtherPath){
-                            Stack<Point> temp2 = new Stack<Point>(temp);
-                            Stack<Point> temp1 = new Stack<Point>(temp2);
-                            temp1.Push(newLoc);
-                            q.Enqueue(temp1);
-                            noOtherPath = false;
+                        if (cl.getCol() != 0 && m.getValueAtCoordinate(cl.getRow(), cl.getCol()-1) != 'X')
+                        {
+                            // check Left
+                            // System.Console.WriteLine("Left");
+                            Point newLoc = new Point(cl);
+                            newLoc.goLeft();
+                            if (!temp.Contains(newLoc) || (i == 1 && noOtherPath)){
+                                Stack<Point> temp2 = new Stack<Point>(temp);
+                                Stack<Point> temp1 = new Stack<Point>(temp2);
+                                temp1.Push(newLoc);
+                                q.Enqueue(temp1);
+                                noOtherPath = false;
+                            }
                         }
-                    }
-                    if (cl.getCol() != m.getCol() - 1 && m.getValueAtCoordinate(cl.getRow(), cl.getCol() + 1) != 'X')
-                    {
-                        // check Right
-                        // System.Console.WriteLine("Right");
-                        Point newLoc = new Point(cl);
-                        newLoc.goRight();
-                        if (!temp.Contains(newLoc) || noOtherPath){
-                            Stack<Point> temp2 = new Stack<Point>(temp);
-                            Stack<Point> temp1 = new Stack<Point>(temp2);
-                            temp1.Push(newLoc);
-                            q.Enqueue(temp1);
-                            noOtherPath = false;
-                            // temp.Pop();
-                            // System.Console.WriteLine(temp.Count);
+                        if (cl.getCol() != m.getCol() - 1 && m.getValueAtCoordinate(cl.getRow(), cl.getCol() + 1) != 'X')
+                        {
+                            // check Right
+                            // System.Console.WriteLine("Right");
+                            Point newLoc = new Point(cl);
+                            newLoc.goRight();
+                            if (!temp.Contains(newLoc) || (i == 1 && noOtherPath)){
+                                Stack<Point> temp2 = new Stack<Point>(temp);
+                                Stack<Point> temp1 = new Stack<Point>(temp2);
+                                temp1.Push(newLoc);
+                                q.Enqueue(temp1);
+                                noOtherPath = false;
+                                // temp.Pop();
+                                // System.Console.WriteLine(temp.Count);
+                            }
                         }
-                    }
-                    if (cl.getRow() != m.getRow() - 1 && m.getValueAtCoordinate(cl.getRow() + 1, cl.getCol()) != 'X')
-                    {
-                        // check Down
-                        // System.Console.WriteLine("Down");
-                        Point newLoc = new Point(cl);
-                        newLoc.goDown();
-                        if (!temp.Contains(newLoc) || noOtherPath){
-                            Stack<Point> temp2 = new Stack<Point>(temp);
-                            Stack<Point> temp1 = new Stack<Point>(temp2);
-                            temp1.Push(newLoc);
-                            q.Enqueue(temp1);
-                            noOtherPath = false;
-                            // temp.Pop();
+                        if (cl.getRow() != m.getRow() - 1 && m.getValueAtCoordinate(cl.getRow() + 1, cl.getCol()) != 'X')
+                        {
+                            // check Down
+                            // System.Console.WriteLine("Down");
+                            Point newLoc = new Point(cl);
+                            newLoc.goDown();
+                            if (!temp.Contains(newLoc) || (i == 1 && noOtherPath)){
+                                Stack<Point> temp2 = new Stack<Point>(temp);
+                                Stack<Point> temp1 = new Stack<Point>(temp2);
+                                temp1.Push(newLoc);
+                                q.Enqueue(temp1);
+                                noOtherPath = false;
+                                // temp.Pop();
+                            }
                         }
                     }
                 }
                 count++;
+                System.Console.WriteLine();
             }
-            System.Console.WriteLine();
             if (q.Count > 0){
                 setNodes(count - 1);
                 return q.Dequeue();
