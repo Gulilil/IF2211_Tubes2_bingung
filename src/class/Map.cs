@@ -77,6 +77,9 @@ namespace src
         public void increaseVCAtCoordinate(Point p){
             this.buffer[p.getRow(), p.getCol()].increaseVisitedCount();
         }
+        public int getVCAtCoordinate(Point p){
+            return this.buffer[p.getRow(), p.getCol()].getVisitedCount();
+        }
         public Point[] getTreasureLocations(){
             return this.treasureLocs;
         }
