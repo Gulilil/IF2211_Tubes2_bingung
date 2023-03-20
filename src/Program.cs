@@ -13,6 +13,10 @@ namespace src
             bfs.getSolution(map);
             bfs.getInfo();
 
+            BFS bfs2 = new BFS();
+            bfs2.setTSP(true);
+            bfs2.getSolution(map);
+            bfs2.getInfo();
 
             map.ReadFile();
             DFS dfs = new DFS();
