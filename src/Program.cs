@@ -8,16 +8,14 @@ namespace src
             Map map = new Map();
             DFS dfs = new DFS();
             BFS bfs = new BFS();
-            Route route = new Route();
-            Stack<Point> stackPath = new Stack<Point> ();
 
             map.ReadFile();
             map.getInfo();
 
-            // dfs.getSolution(route, map, stackPath);
-            // dfs.getInfo();
             bfs.getSolution(map);
             bfs.getInfo();
+            dfs.getSolution(map);
+            dfs.getInfo();
 
             Console.WriteLine("==========================");
             Console.WriteLine("==========================");
