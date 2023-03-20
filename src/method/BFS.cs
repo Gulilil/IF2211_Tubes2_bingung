@@ -42,7 +42,7 @@ namespace src
                 // System.Console.WriteLine(count);
                 m.setCurLoc(temp.Peek());
                 Point cl = m.getCurLoc();
-                displayPath(temp);
+                // displayPath(temp);
                 // m.increaseVCAtCoordinate(cl);
                 bool noOtherPath = true;
                 for(int i = 0; i < 2; i++){
@@ -109,7 +109,7 @@ namespace src
                     }
                 }
                 count++;
-                System.Console.WriteLine();
+                // System.Console.WriteLine();
             }
             if (q.Count > 0){
                 setNodes(count - 1);
