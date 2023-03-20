@@ -150,6 +150,14 @@ namespace src
             }
         }
 
+        public void copySolutionPathsBFS(Stack<Point> paths){
+            this.solPaths = new Point[paths.Count];
+            for(int i = solPaths.Length-1 ; i >=0 ; i--){
+                Point top = paths.Pop();
+                this.solPaths[i] = new Point(top);
+            }
+        }
+
 
         // print and display
         public void displaySolutionRoutes(){

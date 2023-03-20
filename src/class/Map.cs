@@ -74,6 +74,9 @@ namespace src
         public void setValueAtCoordinate(Point p, char c){
             this.buffer[p.getRow(), p.getCol()].setValue(c);
         }
+        public int getVCAtCoordinate(Point p){
+            return this.buffer[p.getRow(), p.getCol()].getVisitedCount();
+        }
         public void increaseVCAtCoordinate(Point p){
             this.buffer[p.getRow(), p.getCol()].increaseVisitedCount();
         }
