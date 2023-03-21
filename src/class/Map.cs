@@ -67,6 +67,10 @@ namespace src
         public void setVCAtCoordinate(Point p, int n){
             this.buffer[p.getRow(), p.getCol()].setVisitedCount(n);
         }
+        public int getVCAtCoordinate(int r, int c)
+        {
+            return this.buffer[r, c].getVisitedCount();
+        }
         public int getVCAtCoordinate(Point p){
             return this.buffer[p.getRow(), p.getCol()].getVisitedCount();
         }
@@ -114,6 +118,19 @@ namespace src
             Console.Write("Starting Location: ");
             this.startLoc.displayPoint();
             System.Console.WriteLine();
+        }
+
+        public void resetMap()
+        {
+            this.curLoc.copyPoint(this.startLoc);
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    setVCAtCoordinate(new Point(i, j), 0);
+                }
+            }
         }
 
         // print and display
@@ -203,16 +220,6 @@ namespace src
                 nRow++;
             }
             this.startLoc.copyPoint(this.curLoc);
-        }
-
-        public void resetMap(){
-            this.curLoc.copyPoint(this.startLoc);
-
-            for (int i = 0; i < row; i++){
-                for (int j = 0; j < col; j++){
-                    setVCAtCoordinate(new Point(i,j), 0);
-                }
-            }
         }
     }
 }

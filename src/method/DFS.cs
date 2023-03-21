@@ -228,24 +228,27 @@ namespace src
         }
 
         public void getSolution(Map m) {
-            startTime();
             Stack<Point> p = new Stack<Point>();
             Stack<Point> solution = new Stack<Point>();
             if (!this.TSP)
             {
+                startTime();
                 solution = solveOneWay(routeNodes, m, p);
+                stopTime();
             }
-            m.resetMap();
             if (this.TSP || solution.Count == 0)
             {
+                m.resetMap();
+                routeNodes = new Route();
+                startTime();
                 solution = solve(routeNodes, m, p);
+                stopTime();
             }
 
             this.steps = solution.Count;
             this.nodes = routeNodes.getNodesAmount();
             copySolutionPathsDFS(solution);
             convertPathsToRoutes();
-            stopTime();
         }
     }
 

@@ -61,7 +61,7 @@ namespace src
             return this.watch.ElapsedMilliseconds;
         }
 
-        public void getInfo(){
+        public void getInfo(bool displayNodes){
             System.Console.WriteLine("==========================");
             Console.WriteLine("Execution Time: " + getExecutionTime() + " ms");
             Console.WriteLine("Total Nodes: "+ getNodes());
@@ -70,8 +70,11 @@ namespace src
             displaySolutionRoutes();
             Console.WriteLine("Solution Paths: ");
             displaySolutionPaths();
-            Console.WriteLine("Constructed Nodes: ");
-            routeNodes.displayRoutes(2,0);
+            if (displayNodes)
+            {
+                Console.WriteLine("Constructed Nodes: ");
+                routeNodes.displayRoutes(2, 0);
+            }
         }
 
         public char[] insertLastRoutes(char[] routes, char c){
@@ -94,20 +97,6 @@ namespace src
             }
             return routes;
         }
-
-        // public Point[] insertFirstPaths(Point[] paths, Point p)
-        // {
-        //     Point[] temp = (Point[])paths.Clone();
-        //     paths = new Point[temp.Length+1];
-        //     for (int i = 0; i < paths.Length; i++){
-        //         if (i == 0){
-        //             paths[i] = p;
-        //         } else {
-        //             paths[i] = temp[i-1];
-        //         }
-        //     }
-        //     return paths;
-        // }
 
         public Point[] insertLastPaths(Point[] paths, Point p)
         {
