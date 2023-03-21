@@ -169,25 +169,40 @@ namespace src
         }
 
         public void displaySolutionPaths(){
-            for(int i = 0; i < this.solPaths.Length;i++){
-                if (i % 5 == 0){
-                    Console.Write("(");
-                } 
+            if (solPaths.Length != 0)
+            {
+                for (int i = 0; i < this.solPaths.Length; i++)
+                {
+                    if (i % 5 == 0)
+                    {
+                        Console.Write("(");
+                    }
 
-                if (i == this.solPaths.Length -1 && i % 5 != 4){
-                    this.solPaths[i].displayPoint();
-                    Console.WriteLine(")");
-                } else {
-                    if (i % 5 != 4){
-                        this.solPaths[i].displayPoint();
-                        Console.Write(" -> ");
-                    } else {
+                    if (i == this.solPaths.Length - 1 && i % 5 != 4)
+                    {
                         this.solPaths[i].displayPoint();
                         Console.WriteLine(")");
                     }
+                    else
+                    {
+                        if (i % 5 != 4)
+                        {
+                            this.solPaths[i].displayPoint();
+                            Console.Write(" -> ");
+                        }
+                        else
+                        {
+                            this.solPaths[i].displayPoint();
+                            Console.WriteLine(")");
+                        }
+                    }
                 }
-
+            } else
+            {
+                Console.WriteLine("No solution is stored.");
             }
+
+
         }
         
     }

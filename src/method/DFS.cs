@@ -228,27 +228,33 @@ namespace src
         }
 
         public void getSolution(Map m) {
-            Stack<Point> p = new Stack<Point>();
-            Stack<Point> solution = new Stack<Point>();
-            if (!this.TSP)
+            if (m.getValid())
             {
-                startTime();
-                solution = solveOneWay(routeNodes, m, p);
-                stopTime();
-            }
-            if (this.TSP || solution.Count == 0)
-            {
-                m.resetMap();
-                routeNodes = new Route();
-                startTime();
-                solution = solve(routeNodes, m, p);
-                stopTime();
-            }
+                Stack<Point> p = new Stack<Point>();
+                Stack<Point> solution = new Stack<Point>();
+                if (!this.TSP)
+                {
+                    startTime();
+                    solution = solveOneWay(routeNodes, m, p);
+                    stopTime();
+                }
+                if (this.TSP || solution.Count == 0)
+                {
+                    m.resetMap();
+                    routeNodes = new Route();
+                    startTime();
+                    solution = solve(routeNodes, m, p);
+                    stopTime();
+                }
 
-            this.steps = solution.Count;
-            this.nodes = routeNodes.getNodesAmount();
-            copySolutionPathsDFS(solution);
-            convertPathsToRoutes();
+                this.steps = solution.Count;
+                this.nodes = routeNodes.getNodesAmount();
+                copySolutionPathsDFS(solution);
+                convertPathsToRoutes();
+            } else
+            {
+                Console.WriteLine("DFS method cannot be done since the map is invalid.");
+            }
         }
     }
 

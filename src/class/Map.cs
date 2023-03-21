@@ -11,6 +11,7 @@ namespace src
         private Point startLoc;
         private Point curLoc;
         private Tile[,] buffer;
+        private bool valid;
 
         // ctor
         public Map() {
@@ -21,6 +22,7 @@ namespace src
             this.startLoc = new Point();
             this.curLoc = new Point();
             this.buffer = new Tile[0,0] {};
+            this.valid = true;
         }
 
         // setter getter
@@ -80,6 +82,18 @@ namespace src
         public Point[] getTreasureLocations(){
             return this.treasureLocs;
         }
+        public void setValidTrue()
+        {
+            this.valid = true;
+        }
+        public void setValidFalse()
+        {
+            this.valid = false;
+        }
+        public bool getValid()
+        {
+            return this.valid;
+        }
 
         // other methods
         public void changeCurLoc(char c){
@@ -108,27 +122,33 @@ namespace src
         }
 
         public void getInfo(){
-            System.Console.WriteLine("==========================");
-            displayMap();
-            Console.WriteLine("Row: " + getRow());
-            Console.WriteLine("Col: " + getCol());
-            Console.WriteLine("Treasure Amount: " + getnTreasure());
-            Console.Write("Treasure Locations: ");
-            displayTreasureLocations();
-            Console.Write("Starting Location: ");
-            this.startLoc.displayPoint();
-            System.Console.WriteLine();
+            if (getValid())
+            {
+                System.Console.WriteLine("==========================");
+                displayMap();
+                Console.WriteLine("Row: " + getRow());
+                Console.WriteLine("Col: " + getCol());
+                Console.WriteLine("Treasure Amount: " + getnTreasure());
+                Console.Write("Treasure Locations: ");
+                displayTreasureLocations();
+                Console.Write("Starting Location: ");
+                this.startLoc.displayPoint();
+                System.Console.WriteLine();
+            }
         }
 
         public void resetMap()
         {
-            this.curLoc.copyPoint(this.startLoc);
-
-            for (int i = 0; i < row; i++)
+            if (getValid())
             {
-                for (int j = 0; j < col; j++)
+                this.curLoc.copyPoint(this.startLoc);
+
+                for (int i = 0; i < row; i++)
                 {
-                    setVCAtCoordinate(new Point(i, j), 0);
+                    for (int j = 0; j < col; j++)
+                    {
+                        setVCAtCoordinate(new Point(i, j), 0);
+                    }
                 }
             }
         }
@@ -174,6 +194,10 @@ namespace src
                     foreach(char c in line){
                         if (c != ' '){
                             nCol++;
+                            if (c != 'K' && c != 'X' && c!= 'R' && c != 'T')
+                            {
+                                setValidFalse();
+                            }
                         }
                     }
                 }
@@ -192,34 +216,49 @@ namespace src
             string fullPath = path + "/test/" +fileName;
 
             IdentifyFile(fullPath);
-            this.buffer = new Tile[this.row, this.col];
-            for (int i = 0; i < row ; i++){
-                for (int j = 0; j < col; j++){
-                    this.buffer[i,j] = new Tile();
-                }
-            }
-            string[] lines = File.ReadAllLines(fullPath);
-
-            int nCol = 0;
-            int nRow = 0;
-            foreach(string line in lines){
-                nCol = 0;
-                foreach(char c in line){
-                    if(c != ' '){
-                        this.buffer[nRow, nCol].setValue(c);
-
-                        if (c == 'T'){
-                            this.nTreasure++;
-                            addTreasureLocation(nRow, nCol);
-                        } else if ( c == 'K'){
-                            this.curLoc = new Point(nRow, nCol);
-                        }
-                        nCol++;
+            if (getValid())
+            {
+                this.buffer = new Tile[this.row, this.col];
+                for (int i = 0; i < row; i++)
+                {
+                    for (int j = 0; j < col; j++)
+                    {
+                        this.buffer[i, j] = new Tile();
                     }
                 }
-                nRow++;
+                string[] lines = File.ReadAllLines(fullPath);
+
+                int nCol = 0;
+                int nRow = 0;
+                foreach (string line in lines)
+                {
+                    nCol = 0;
+                    foreach (char c in line)
+                    {
+                        if (c != ' ')
+                        {
+                            this.buffer[nRow, nCol].setValue(c);
+
+                            if (c == 'T')
+                            {
+                                this.nTreasure++;
+                                addTreasureLocation(nRow, nCol);
+                            }
+                            else if (c == 'K')
+                            {
+                                this.curLoc = new Point(nRow, nCol);
+                            }
+                            nCol++;
+                        }
+                    }
+                    nRow++;
+                }
+                this.startLoc.copyPoint(this.curLoc);
+            } 
+            else
+            {
+                Console.WriteLine("Map Reading Failed. Invalid Map Detected.");
             }
-            this.startLoc.copyPoint(this.curLoc);
         }
     }
 }

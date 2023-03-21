@@ -193,14 +193,20 @@ namespace src
         }
 
         public void getSolution(Map m){
-            startTime();
-            Stack<Point> solution = solve(routeNodes, m);
-            stopTime();
+            if (m.getValid())
+            {
+                startTime();
+                Stack<Point> solution = solve(routeNodes, m);
+                stopTime();
 
-            this.nodes = routeNodes.getNodesAmount();
-            this.steps = solution.Count;
-            copySolutionPathsBFS(solution);
-            convertPathsToRoutes();
+                this.nodes = routeNodes.getNodesAmount();
+                this.steps = solution.Count;
+                copySolutionPathsBFS(solution);
+                convertPathsToRoutes();
+            } else
+            {
+                Console.WriteLine("BFS method cannot be done since the map is invalid.");
+            }
         }
     }
 }
