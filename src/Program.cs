@@ -13,18 +13,18 @@ namespace src
             bfs.getSolution(map);
             bfs.getInfo();
 
-            map.setCurLoc(map.getStartLoc());
+            map.resetMap();
             BFS bfs2 = new BFS();
             bfs2.setTSP(true);
             bfs2.getSolution(map);
             bfs2.getInfo();
 
-            map.setCurLoc(map.getStartLoc());
+            map.resetMap();
             DFS dfs = new DFS();
             dfs.getSolution(map);
             dfs.getInfo();
 
-            map.setCurLoc(map.getStartLoc());
+            map.resetMap();
             DFS dfs2 = new DFS();
             dfs2.setTSP(true);
             dfs2.getSolution(map);

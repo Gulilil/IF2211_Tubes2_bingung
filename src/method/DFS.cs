@@ -111,7 +111,7 @@ namespace src
             bool objectives;
             if (this.TSP)
             {
-                objectives = isAllTreasureTaken(p, m.getTreasureLocations()) && p.Peek() == m.getStartLoc();
+                objectives = isAllTreasureTaken(p, m.getTreasureLocations()) && p.Peek().Equals(m.getStartLoc());
             } else
             {
                 objectives = isAllTreasureTaken(p, m.getTreasureLocations());
@@ -161,7 +161,7 @@ namespace src
                 {
                     m.setCurLoc(newCl);
                     r.setUpChild(newCl);
-                    if (isAllTreasureTaken(solve(r.getUpChild(), m, p), m.getTreasureLocations()))
+                    if (isAllTreasureTaken(solveOneWay(r.getUpChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -176,7 +176,7 @@ namespace src
                 {
                     m.setCurLoc(newCl);
                     r.setLeftChild(newCl);
-                    if (isAllTreasureTaken(solve(r.getLeftChild(), m, p), m.getTreasureLocations()))
+                    if (isAllTreasureTaken(solveOneWay(r.getLeftChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -191,7 +191,7 @@ namespace src
                 {
                     m.setCurLoc(newCl);
                     r.setRightChild(newCl);
-                    if (isAllTreasureTaken(solve(r.getRightChild(), m, p), m.getTreasureLocations()))
+                    if (isAllTreasureTaken(solveOneWay(r.getRightChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -206,7 +206,7 @@ namespace src
                 {
                     m.setCurLoc(newCl);
                     r.setDownChild(newCl);
-                    if (isAllTreasureTaken(solve(r.getDownChild(), m, p), m.getTreasureLocations()))
+                    if (isAllTreasureTaken(solveOneWay(r.getDownChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -235,8 +235,8 @@ namespace src
             {
                 solution = solveOneWay(routeNodes, m, p);
             }
-            m.setCurLoc(m.getStartLoc());
-            if (this.TSP ||solution.Count == 0)
+            m.resetMap();
+            if (this.TSP || solution.Count == 0)
             {
                 solution = solve(routeNodes, m, p);
             }
@@ -246,14 +246,6 @@ namespace src
             copySolutionPathsDFS(solution);
             convertPathsToRoutes();
             stopTime();
-        }
-
-        // print and display
-        public void displayPath(Stack<Point> paths)
-        {
-            foreach (Point element in paths){
-                element.displayPoint();
-            }
         }
     }
 

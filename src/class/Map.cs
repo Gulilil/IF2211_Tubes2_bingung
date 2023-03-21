@@ -64,6 +64,9 @@ namespace src
         public void setValueAtCoordinate(Point p, char c){
             this.buffer[p.getRow(), p.getCol()].setValue(c);
         }
+        public void setVCAtCoordinate(Point p, int n){
+            this.buffer[p.getRow(), p.getCol()].setVisitedCount(n);
+        }
         public int getVCAtCoordinate(Point p){
             return this.buffer[p.getRow(), p.getCol()].getVisitedCount();
         }
@@ -200,7 +203,16 @@ namespace src
                 nRow++;
             }
             this.startLoc.copyPoint(this.curLoc);
-            
+        }
+
+        public void resetMap(){
+            this.curLoc.copyPoint(this.startLoc);
+
+            for (int i = 0; i < row; i++){
+                for (int j = 0; j < col; j++){
+                    setVCAtCoordinate(new Point(i,j), 0);
+                }
+            }
         }
     }
 }
