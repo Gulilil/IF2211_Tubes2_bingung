@@ -3,9 +3,10 @@
     "",
     "\\src",
     "\\src\\class",
+    "\\src\\dump",
     "\\src\\method",
     "\\test"
   ],
-  "SelectedNode": "\\src\\method\\BFS.cs",
+  "SelectedNode": "\\src\\method\\DFS.cs",
   "PreviewInSolutionExplorer": false
 }
