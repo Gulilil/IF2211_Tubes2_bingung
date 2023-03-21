@@ -58,10 +58,20 @@ dotnet run
 ## **Folders and Files Description**
     .   
     ├─ .vs
-    ├─ bin                              # Contains compiled program
+    ├─ bin                              # Contains compiled program, only appear locally if you have tried to compile the program
     ├─ doc                              # Contains complete documentation file of the program
-    ├─ obj
+    ├─ obj                              # Only appear locally if you have tried to compile the program
     ├─ src                              # Contains every algorithm in constructing the program
+        ├─ class                            # Contains fundamental classes used in the program
+            ├─ Map.cs
+            ├─ Point.cs
+            ├─ Route.cs
+            ├─ Tile.cs
+        ├─ dump                             # Used to store unused algorithms
+        ├─ method                           # Contains the solving algorithm of the given problem
+            ├─ BFS.cs
+            ├─ DFS.cs
+            ├─ Solver.cs
     ├─ test                             # Contains input files for the program
     ├─ App.csproj
     └─ README.md
