@@ -23,16 +23,6 @@ namespace src
             this.buffer = new Tile[0,0] {};
         }
 
-        // public Map(int r, int c, int n, Point cl){
-        //     this.row = r;
-        //     this.col = c;
-        //     this.nTreasure = n;
-        //     this.startLoc = new Point(cl.getRow(), cl.getCol());
-        //     this.treasureLocs = new Point[] {};
-        //     this.curLoc = cl;
-        //     this.buffer = new char[0,0] {};
-        // }
-
         // setter getter
         public void setRow(int r){
             row = r;

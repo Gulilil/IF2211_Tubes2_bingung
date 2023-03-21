@@ -41,6 +41,7 @@ namespace src
                 Stack<Point> temp = q.Dequeue();
                 m.setCurLoc(temp.Peek());
                 Point cl = m.getCurLoc();
+                m.increaseVCAtCoordinate(cl);
                 bool noOtherPath = true;
                 for(int i = 0; i < 2; i++){
                     if (noOtherPath){
