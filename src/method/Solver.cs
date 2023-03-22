@@ -9,7 +9,7 @@ namespace src
         protected int steps;
         protected char[] solRoutes;
         protected Point[] solPaths;
-        protected Route routeNodes;
+        protected Nodes routeNodes;
         protected Stopwatch watch;
 
         // ctor
@@ -19,7 +19,7 @@ namespace src
             this.steps = 0;
             this.solRoutes = new char[] {};
             this.solPaths = new Point[] {};
-            this.routeNodes = new Route();
+            this.routeNodes = new Nodes();
             this.watch = new Stopwatch();
         }
 
@@ -44,7 +44,7 @@ namespace src
         {
             return this.solPaths;
         }
-        public Route getRoute(){
+        public Nodes getRoute(){
             return this.routeNodes;
         }
 

@@ -84,25 +84,25 @@ namespace src
             return coordinates;
         }
 
-        public Route setNewRoutes(Point cl, Point newCl, Route r) {
+        public Nodes setNewNodes(Point cl, Point newCl, Nodes n) {
             if (newCl.isUpOf(cl)) {
-                r.setUpChild(newCl);
-                return r.getUpChild();
+                n.setUpChild(newCl);
+                return n.getUpChild();
             } else if (newCl.isLeftOf(cl)) {
-                r.setLeftChild(newCl);
-                return r.getLeftChild();
+                n.setLeftChild(newCl);
+                return n.getLeftChild();
             } else if (newCl.isRightOf(cl)) {
-                r.setRightChild(newCl);
-                return r.getRightChild();
+                n.setRightChild(newCl);
+                return n.getRightChild();
             } else if (newCl.isDownOf(cl)) {
-                r.setDownChild(newCl);
-                return r.getDownChild();
+                n.setDownChild(newCl);
+                return n.getDownChild();
             }
-            return r;
+            return n;
         }
 
 
-        public Stack<Point> solve(Route r, Map m, Stack<Point> p)
+        public Stack<Point> solve(Nodes n, Map m, Stack<Point> p)
         {
             Point cl = m.getCurLoc();
             p.Push(cl);
@@ -127,8 +127,8 @@ namespace src
             while (iteration < availableCoordinates.Length)
             {
                 m.setCurLoc(availableCoordinates[iteration]);
-                Route newRoute = setNewRoutes(cl, availableCoordinates[iteration], r);
-                if (isAllTreasureTaken(solve(newRoute, m, p), m.getTreasureLocations()))
+                Nodes newNodes = setNewNodes(cl, availableCoordinates[iteration], n);
+                if (isAllTreasureTaken(solve(newNodes, m, p), m.getTreasureLocations()))
                 {
                     return p;
                 }
@@ -141,11 +141,11 @@ namespace src
         }
 
 
-        public Stack<Point> solveOneWay(Route r, Map m, Stack<Point> p)
+        public Stack<Point> solveOneWay(Nodes n, Map m, Stack<Point> p)
         {
             Point cl = m.getCurLoc();
-            r.setNode(cl);
-            p.Push(r.getNode());
+            n.setNode(cl);
+            p.Push(n.getNode());
 
             if (isAllTreasureTaken(p, m.getTreasureLocations()))
             {
@@ -160,8 +160,8 @@ namespace src
                 if (!isPathAlreadyTaken(p, newCl))
                 {
                     m.setCurLoc(newCl);
-                    r.setUpChild(newCl);
-                    if (isAllTreasureTaken(solveOneWay(r.getUpChild(), m, p), m.getTreasureLocations()))
+                    n.setUpChild(newCl);
+                    if (isAllTreasureTaken(solveOneWay(n.getUpChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -175,8 +175,8 @@ namespace src
                 if (!isPathAlreadyTaken(p, newCl))
                 {
                     m.setCurLoc(newCl);
-                    r.setLeftChild(newCl);
-                    if (isAllTreasureTaken(solveOneWay(r.getLeftChild(), m, p), m.getTreasureLocations()))
+                    n.setLeftChild(newCl);
+                    if (isAllTreasureTaken(solveOneWay(n.getLeftChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -190,8 +190,8 @@ namespace src
                 if (!isPathAlreadyTaken(p, newCl))
                 {
                     m.setCurLoc(newCl);
-                    r.setRightChild(newCl);
-                    if (isAllTreasureTaken(solveOneWay(r.getRightChild(), m, p), m.getTreasureLocations()))
+                    n.setRightChild(newCl);
+                    if (isAllTreasureTaken(solveOneWay(n.getRightChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -205,8 +205,8 @@ namespace src
                 if (!isPathAlreadyTaken(p, newCl))
                 {
                     m.setCurLoc(newCl);
-                    r.setDownChild(newCl);
-                    if (isAllTreasureTaken(solveOneWay(r.getDownChild(), m, p), m.getTreasureLocations()))
+                    n.setDownChild(newCl);
+                    if (isAllTreasureTaken(solveOneWay(n.getDownChild(), m, p), m.getTreasureLocations()))
                     {
                         return p;
                     }
@@ -241,7 +241,7 @@ namespace src
                 if (this.TSP || solution.Count == 0)
                 {
                     m.resetMap();
-                    routeNodes = new Route();
+                    routeNodes = new Nodes();
                     startTime();
                     solution = solve(routeNodes, m, p);
                     stopTime();
