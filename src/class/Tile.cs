@@ -1,35 +1,36 @@
-using System
+using System;
 
-namespace src
+namespace Class
+{
+    public class Tile 
+    {
+        private char value;
+        private int visitedCount;
 
-class Tile 
+        // ctor
+        public Tile() {
+            value = '.';
+            visitedCount = 0;
+        }
 
-char value
-int visitedCount
+        // setter getter
+        public void setValue(char c) {
+            value = c;
+        }
+        public void setVisitedCount(int vc){
+            visitedCount = vc;
+        }
+        public char getValue(){
+            return value;
+        }
+        public int getVisitedCount(){
+            return visitedCount;
+        }
 
-// ctor
-Tile() 
-    value <- '.'
-    visitedCount <- 0
+        // other method
+        public void increaseVisitedCount(){
+            visitedCount++;
+        }
 
-
-// setter getter
-procedure setValue(char c) 
-    value <- c
-
-procedure setVisitedCount(int vc)
-    visitedCount <- vc
-
-char getValue()
-    -> value
-
-int getVisitedCount()
-    -> visitedCount
-
-
-// other method
-procedure increaseVisitedCount()
-    visitedCount++
-
-
-
+    }
+}

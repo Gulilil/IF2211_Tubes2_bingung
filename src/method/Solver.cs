@@ -1,208 +1,210 @@
-using System
-using Diagnostics
+using System;
+using System.Diagnostics;
+using Class;
 
-namespace src
+namespace Method
+{
+    public class Solver
+    {
+        protected int nodes;
+        protected int steps;
+        protected char[] solRoutes;
+        protected Point[] solPaths;
+        protected Nodes routeNodes;
+        protected Stopwatch watch;
 
-class Solver
+        // ctor
+        public Solver()
+        {
+            this.nodes = 0;
+            this.steps = 0;
+            this.solRoutes = new char[] {};
+            this.solPaths = new Point[] {};
+            this.routeNodes = new Nodes();
+            this.watch = new Stopwatch();
+        }
 
-int nodes
-int steps
-char[] solRoutes
-Point[] solPaths
-Nodes routeNodes
-Stopwatch watch
+        // setter getter
+        public void setNodes (int n){
+            this.nodes = n;
+        }
+        public void setSteps (int s){
+            this.steps = s;
+        }
+        public int getNodes(){
+            return this.nodes;
+        }
+        public int getSteps(){
+            return this.steps;
+        }
+        public char[] getSolRoutes()
+        {
+            return this.solRoutes;
+        }
+        public Point[] getSolPaths()
+        {
+            return this.solPaths;
+        }
+        public Nodes getRoute(){
+            return this.routeNodes;
+        }
 
-// ctor
-Solver()
+        // other methods
+        public void startTime(){
+            this.watch.Start();
+        }
 
-    this.nodes <- 0
-    this.steps <- 0
-    this.solRoutes <- new char[] 
-    this.solPaths <- new Point[] 
-    this.routeNodes <- new Nodes()
-    this.watch <- new Stopwatch()
+        public void stopTime(){
+            this.watch.Stop();
+        }
+
+        public long getExecutionTime(){
+            return this.watch.ElapsedMilliseconds;
+        }
+
+        public void getInfo(bool displayNodes){
+            System.Console.WriteLine("==========================");
+            Console.WriteLine("Execution Time: " + getExecutionTime() + " ms");
+            Console.WriteLine("Total Nodes: "+ getNodes());
+            Console.WriteLine("Total Steps: "+ getSteps());
+            Console.Write("Solution Route: ");
+            displaySolutionRoutes();
+            Console.WriteLine("Solution Paths: ");
+            displaySolutionPaths();
+            if (displayNodes)
+            {
+                Console.WriteLine("Constructed Nodes: ");
+                routeNodes.displayRoutes(2, 0);
+            }
+        }
+
+        public char[] insertLastRoutes(char[] routes, char c){
+            char[] temp = new char[routes.Length+1];
+            for (int i = 0; i < temp.Length; i++){
+                if(i == temp.Length-1){
+                    temp[i] = c;
+                } else {
+                    temp[i] = routes[i];
+                }
+            }
+            return temp;
+        }
+
+        public char[] deleteFirstRoutes(char[] routes){
+            char[] temp = (char[])routes.Clone();
+            routes = new char[temp.Length-1];
+            for (int i = 0; i < routes.Length; i++){
+                routes[i] = temp[i+1];
+            }
+            return routes;
+        }
+
+        public Point[] insertLastPaths(Point[] paths, Point p)
+        {
+            Point[] temp = new Point[paths.Length+1];
+            for (int i = 0; i < temp.Length; i++){
+                if (i == temp.Length-1){
+                    temp[i] = p;
+                } else {
+                    temp[i] = paths[i];
+                }
+            }
+            return temp;
+        }
+
+        public Point[] deleteFirstPaths(Point[] paths)
+        {
+            Point[] temp = (Point[])paths.Clone();
+            paths = new Point[temp.Length-1];
+            for (int i = 0; i < paths.Length; i++){
+                paths[i] = temp[i+1];
+            }
+            return paths;
+        }
+
+        public void convertPathsToRoutes(){
+            for (int i = 0; i < this.solPaths.Length-1; i++){
+                if (this.solPaths[i+1].isUpOf(this.solPaths[i])){
+                    this.solRoutes = this.insertLastRoutes(this.solRoutes, 'U');
+                } else if (this.solPaths[i+1].isDownOf(this.solPaths[i])){
+                    this.solRoutes = this.insertLastRoutes(this.solRoutes, 'D');
+                } else if (this.solPaths[i+1].isLeftOf(this.solPaths[i])){
+                    this.solRoutes = this.insertLastRoutes(this.solRoutes, 'L');
+                } else if (this.solPaths[i+1].isRightOf(this.solPaths[i])){
+                    this.solRoutes = this.insertLastRoutes(this.solRoutes, 'R');
+                }
+            }
+        }
+
+        public void copySolutionPathsDFS(Stack<Point> paths){
+            this.solPaths = new Point[paths.Count];
+            for(int i = solPaths.Length-1 ; i >=0 ; i--){
+                Point top = paths.Pop();
+                this.solPaths[i] = new Point(top);
+            }
+            for (int i = 0; i < solPaths.Length; i++){
+                paths.Push(solPaths[i]);
+            }
+        }
+
+        public void copySolutionPathsBFS(Stack<Point> paths){
+            this.solPaths = new Point[paths.Count];
+            for(int i = solPaths.Length-1 ; i >=0 ; i--){
+                Point top = paths.Pop();
+                this.solPaths[i] = new Point(top);
+            }
+        }
 
 
-// setter getter
-procedure setNodes (int n)
-    this.nodes <- n
+        // print and display
+        public void displaySolutionRoutes(){
+            Console.Write("(");
+            for(int i = 0; i < this.solRoutes.Length; i++){
+                if (i == this.solRoutes.Length-1){
+                    Console.Write(this.solRoutes[i]);
+                } else {
+                    Console.Write(this.solRoutes[i]+", ");
+                }
+            }
+            Console.WriteLine(")");
+        }
 
-procedure setSteps (int s)
-    this.steps <- s
+        public void displaySolutionPaths(){
+            if (solPaths.Length != 0)
+            {
+                for (int i = 0; i < this.solPaths.Length; i++)
+                {
+                    if (i % 5 == 0)
+                    {
+                        Console.Write("(");
+                    }
 
-int getNodes()
-    -> this.nodes
-
-int getSteps()
-    -> this.steps
-
-char[] getSolRoutes()
-
-    -> this.solRoutes
-
-Point[] getSolPaths()
-
-    -> this.solPaths
-
-Nodes getRoute()
-    -> this.routeNodes
-
-
-// other methods
-procedure startTime()
-    this.watch.Start()
-
-
-procedure stopTime()
-    this.watch.Stop()
-
-
-long getExecutionTime()
-    -> this.watch.ElapsedMilliseconds
-
-
-procedure getInfo(bool displayNodes)
-    output("=============")
-    output("Execution Time: " + getExecutionTime() + " ms")
-    output("Total Nodes: "+ getNodes())
-    output("Total Steps: "+ getSteps())
-    output("Solution Route: ")
-    displaySolutionRoutes()
-    output("Solution Paths: ")
-    displaySolutionPaths()
-    if (displayNodes)
-    
-        output("Constructed Nodes: ")
-        routeNodes.displayRoutes(2, 0)
-    
+                    if (i == this.solPaths.Length - 1 && i % 5 != 4)
+                    {
+                        this.solPaths[i].displayPoint();
+                        Console.WriteLine(")");
+                    }
+                    else
+                    {
+                        if (i % 5 != 4)
+                        {
+                            this.solPaths[i].displayPoint();
+                            Console.Write(" -> ");
+                        }
+                        else
+                        {
+                            this.solPaths[i].displayPoint();
+                            Console.WriteLine(")");
+                        }
+                    }
+                }
+            } else
+            {
+                Console.WriteLine("No solution is stored.");
+            }
 
 
-char[] insertLastRoutes(char[] routes, char c)
-    char[] temp <- new char[routes.Length+1]
-    for (int i <- 0 i < temp.Length i++)
-        if(i = temp.Length-1)
-            temp[i] <- c
-            else 
-            temp[i] <- routes[i]
+        }
         
-    
-    -> temp
-
-
-char[] deleteFirstRoutes(char[] routes)
-    char[] temp <- (char[])routes.Clone()
-    routes <- new char[temp.Length-1]
-    for (int i <- 0 i < routes.Length i++)
-        routes[i] <- temp[i+1]
-    
-    -> routes
-
-
-Point[] insertLastPaths(Point[] paths, Point p)
-
-    Point[] temp <- new Point[paths.Length+1]
-    for (int i <- 0 i < temp.Length i++)
-        if (i = temp.Length-1)
-            temp[i] <- p
-            else 
-            temp[i] <- paths[i]
-        
-    
-    -> temp
-
-
-Point[] deleteFirstPaths(Point[] paths)
-
-    Point[] temp <- (Point[])paths.Clone()
-    paths <- new Point[temp.Length-1]
-    for (int i <- 0 i < paths.Length i++)
-        paths[i] <- temp[i+1]
-    
-    -> paths
-
-
-procedure convertPathsToRoutes()
-    for (int i <- 0 i < this.solPaths.Length-1 i++)
-        if (this.solPaths[i+1].isUpOf(this.solPaths[i]))
-            this.solRoutes <- this.insertLastRoutes(this.solRoutes, 'U')
-            else if (this.solPaths[i+1].isDownOf(this.solPaths[i]))
-            this.solRoutes <- this.insertLastRoutes(this.solRoutes, 'D')
-            else if (this.solPaths[i+1].isLeftOf(this.solPaths[i]))
-            this.solRoutes <- this.insertLastRoutes(this.solRoutes, 'L')
-            else if (this.solPaths[i+1].isRightOf(this.solPaths[i]))
-            this.solRoutes <- this.insertLastRoutes(this.solRoutes, 'R')
-        
-    
-
-
-procedure copySolutionPathsDFS(Stack<Point> paths)
-    this.solPaths <- new Point[paths.Count]
-    for(int i <- solPaths.Length-1  i ><-0  i--)
-        Point top <- paths.Pop()
-        this.solPaths[i] <- new Point(top)
-    
-    for (int i <- 0 i < solPaths.Length i++)
-        paths.Push(solPaths[i])
-    
-
-
-procedure copySolutionPathsBFS(Stack<Point> paths)
-    this.solPaths <- new Point[paths.Count]
-    for(int i <- solPaths.Length-1  i ><-0  i--)
-        Point top <- paths.Pop()
-        this.solPaths[i] <- new Point(top)
-    
-
-
-
-// print and display
-procedure displaySolutionRoutes()
-    output("(")
-    for(int i <- 0 i < this.solRoutes.Length i++)
-        if (i = this.solRoutes.Length-1)
-            output(this.solRoutes[i])
-            else 
-            output(this.solRoutes[i]+", ")
-        
-    
-    output(")")
-
-
-procedure displaySolutionPaths()
-    if (solPaths.Length !<- 0)
-    
-        for (int i <- 0 i < this.solPaths.Length i++)
-        
-            if (i % 5 = 0)
-            
-                output("(")
-            
-
-            if (i = this.solPaths.Length - 1 and i % 5 !<- 4)
-            
-                this.solPaths[i].displayPoint()
-                output(")")
-            
-            else
-            
-                if (i % 5 !<- 4)
-                
-                    this.solPaths[i].displayPoint()
-                    output(" -> ")
-                
-                else
-                
-                    this.solPaths[i].displayPoint()
-                    output(")")
-                
-            
-        
-        else
-    
-        output("No solution is stored.")
-    
-
-
-
-
-
+    }
+}
