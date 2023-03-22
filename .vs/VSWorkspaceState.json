@@ -3,10 +3,8 @@
     "",
     "\\src",
     "\\src\\class",
-    "\\src\\dump",
-    "\\src\\method",
-    "\\test"
+    "\\src\\method"
   ],
-  "SelectedNode": "\\test\\sample5.txt",
+  "SelectedNode": "\\TreasureMaze.csproj",
   "PreviewInSolutionExplorer": false
 }

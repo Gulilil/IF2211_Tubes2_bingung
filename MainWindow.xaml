@@ -1,0 +1,136 @@
+﻿<Window x:Class="TreasureMaze.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreasureMaze"
+        mc:Ignorable="d"
+        Title="TreasureMaze Bingung" Height="1080" Width="1440">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="#DBE4C6" >
+            <Label HorizontalAlignment="Center" Padding="0,250,0,40" FontFamily="Arial" FontSize="35" Foreground="#94AF9F">Treasure Maze</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalAlignment="Center" FontFamily="Arial" FontSize="20" Foreground="#94AF9F">Input Your File</Label>
+                <Button x:Name="chooseFileButton" Click="ChooseFile" Grid.Column="1" Width="150" Background="#BBD6B8" BorderBrush="#BBD6B8">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Span>
+                        <Bold>
+                            Choose File
+                        </Bold>
+                    </Span>
+                </Button>
+            </Grid>
+            <DockPanel Margin="0,20,0,0" HorizontalAlignment="Center" Width="300">
+                <Ellipse x:Name="BFS"
+                HorizontalAlignment="Left"
+                Margin="20,20,20,20"
+                Width="20"
+                Height="20"
+                Fill="#94AF9F"/>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth First Search</Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Width="300">
+                <Ellipse x:Name="DFS"
+                HorizontalAlignment="Left"
+                Margin="20,20,20,20"
+                Width="20"
+                Height="20"
+                Fill="White"/>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Depth First Search</Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Width="300">
+                <Ellipse x:Name="BFSTSP"
+                HorizontalAlignment="Left"
+                Margin="20,20,20,20"
+                Width="20"
+                Height="20"
+                Fill="White"/>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth Travelling Salesman</Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Width="300">
+                <Ellipse x:Name="DFSTSP"
+                Margin="20,20,20,20"
+                Width="20"
+                Height="20"
+                Fill="White"/>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Depth Travelling Salesman</Label>
+            </DockPanel>
+            <Button Grid.Column="1" Width="150" Background="#BBD6B8" BorderBrush="#BBD6B8" Margin="0,20,0,0" Click="StartProcess">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Span FontSize="25">
+                    <Bold>
+                        START
+                    </Bold>
+                </Span>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="White">
+                <Label HorizontalAlignment="Center" FontSize="30" Padding="0,50,0,20">
+                    <Span>
+                        <Bold>
+                            Map
+                        </Bold>
+                    </Span>
+                </Label>
+                <Rectangle Fill="AliceBlue" Width="700" Height="700"/>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" >
+                <Button Width="200" Background="#BBD6B8" BorderBrush="#BBD6B8" Margin="0,10,0,15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Span FontSize="25">
+                        <Bold>
+                            PLAY ROUTE
+                        </Bold>
+                    </Span>
+                </Button>
+                <Grid Margin="20 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="20" Grid.Column="0">
+                        <Bold>Execution Time:</Bold>
+                    </Label>
+                    <Label FontSize="20" Grid.Column="1">
+                        <Bold>Nodes:</Bold>
+                    </Label>
+                    <Label FontSize="20" Grid.Column="2">
+                        <Bold>Steps:</Bold>
+                    </Label>
+                </Grid>
+                <Label FontSize="20" Margin="20 0 0 0">
+                    <Bold>Route:</Bold>
+                </Label>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
+

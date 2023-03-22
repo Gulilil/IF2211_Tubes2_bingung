@@ -1,6 +1,7 @@
 using System;
 
-namespace src {
+namespace src
+{
     public class Nodes {
         private Nodes parent;
         private Point node;
