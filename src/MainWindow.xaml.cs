@@ -162,6 +162,7 @@ namespace TreasureMaze
                 stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+                this.map.resetMap();
             } else if (mode == "DFS")
             {
                 DFS dfs = new DFS();
@@ -170,6 +171,7 @@ namespace TreasureMaze
                 stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+                this.map.resetMap();
             } else if (mode == "DFSTSP")
             {
                 DFS dfs = new DFS();
@@ -179,6 +181,7 @@ namespace TreasureMaze
                 stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+                this.map.resetMap();
             } else
             {
                 BFS bfs = new BFS();
@@ -188,6 +191,7 @@ namespace TreasureMaze
                 stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+                this.map.resetMap();
             }
         }
     }
