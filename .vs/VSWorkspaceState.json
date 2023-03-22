@@ -2,6 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\bin",
+    "\\src\\bin\\Debug",
+    "\\src\\bin\\Release",
     "\\src\\class",
     "\\src\\method"
   ],

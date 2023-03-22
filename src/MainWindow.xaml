@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreasureMaze"
         mc:Ignorable="d"
-        Title="TreasureMaze Bingung" Height="1080" Width="1440">
+        Title="TreasureMaze Bingung" Height="960" Width="1440">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -85,18 +85,21 @@
                 <RowDefinition Height="13*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Background="White">
-                <Label HorizontalAlignment="Center" FontSize="30" Padding="0,50,0,20">
+            <Grid Grid.Row="0" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="2*"/>
+					<RowDefinition Height="11*"/>
+				</Grid.RowDefinitions>
+                <Label HorizontalAlignment="Center" FontSize="30" Padding="0,50,0,20" Grid.Row="0">
                     <Span>
                         <Bold>
                             Map
                         </Bold>
                     </Span>
                 </Label>
-                <Rectangle Fill="AliceBlue" Width="700" Height="700"/>
-
-
-            </StackPanel>
+				<Grid x:Name="MapBuffer" Background="#DBE4C6" Width="700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+				</Grid>
+            </Grid>
             <StackPanel Grid.Row="1" >
                 <Button Width="200" Background="#BBD6B8" BorderBrush="#BBD6B8" Margin="0,10,0,15">
                     <Button.Resources>
