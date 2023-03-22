@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\bin",
+    "\\src\\bin\\Debug",
+    "\\src\\bin\\Release",
     "\\src\\class",
     "\\src\\method"
   ],
-  "SelectedNode": "\\TreasureMaze.csproj",
+  "SelectedNode": "\\src\\TreasureMaze.csproj",
   "PreviewInSolutionExplorer": false
 }

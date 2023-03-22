@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Diagnostics;
 using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,6 @@ namespace TreasureMaze
     /// </summary>
     public partial class MainWindow : Window
     {
-        private String pathFileMap;
         private String mode;
         private Map map;
 
@@ -36,22 +36,80 @@ namespace TreasureMaze
             DFS.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFS));
             BFSTSP.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickBFSTSP));
             DFSTSP.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFSTSP));
-            pathFileMap = "";
             mode = "BFS";
+            map = new Map();
         }
 
         private void ChooseFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Title = "Select File";
-            fileDialog.InitialDirectory = @"C:\";
             fileDialog.Filter = "Text File (*.txt)|*.txt";
             fileDialog.FilterIndex = 1;
             fileDialog.ShowDialog();
             if (fileDialog.FileName != "")
             {
-
+                String pathFileMap = fileDialog.FileName;
+                map.ReadFileAtPath(pathFileMap);
+                
+                MapBuffer.ColumnDefinitions.Clear();
+                MapBuffer.RowDefinitions.Clear();
+                
+                int col = map.getCol();
+                int row = map.getRow();
+                int side;
+                if (col > row)
+                {
+                    side = 700/col;
+                } else
+                {
+                    side = 700/row;
+                }
+                MapBuffer.Width = side * col;
+                MapBuffer.Height = side * row;
+                var bc = new BrushConverter();
+                MapBuffer.Background = (Brush)bc.ConvertFrom("#000000");
+                for (int i = 0; i < col; i++) {
+                    ColumnDefinition coldef = new ColumnDefinition();
+                    coldef.Width = new GridLength(1, GridUnitType.Star);
+                    MapBuffer.ColumnDefinitions.Add(coldef);
+                }
+                
+                for (int i = 0; i < row; i++) {
+                    RowDefinition rowdef = new RowDefinition();
+                    rowdef.Height = new GridLength(1, GridUnitType.Star);
+                    MapBuffer.RowDefinitions.Add(rowdef);
+                }
+                
+                for (int i = 0; i < row; i++)
+                {
+                    for (int j = 0; j < col; j++)
+                    {
+                        StackPanel stack = new StackPanel();
+                        Grid.SetRow(stack, i);
+                        Grid.SetColumn(stack, j);
+                        MapBuffer.Children.Add(stack);
+                        if (map.getValueAtCoordinate(new src.Point(i, j)) == 'R')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                        } else if (map.getValueAtCoordinate(new src.Point(i, j)) == 'X')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#245953");
+                        } else if (map.getValueAtCoordinate(new src.Point(i, j)) == 'K')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#19A7CE");
+                        } else
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#F7C04A");
+                        }
+                      
+                    }
+                }
+            } else
+            {
+                Debug.WriteLine("Masukkan salah");
             }
+            
         }
 
         private void PickBFS(object sender, MouseButtonEventArgs e)
@@ -96,7 +154,7 @@ namespace TreasureMaze
 
         private void StartProcess(object sender, RoutedEventArgs e)
         {
-            
+            Debug.WriteLine("START");
         }
     }
 }
