@@ -4,10 +4,8 @@
     "\\src",
     "\\src\\bin",
     "\\src\\bin\\Debug",
-    "\\src\\bin\\Release",
     "\\src\\class",
     "\\src\\method"
   ],
-  "SelectedNode": "\\src\\TreasureMaze.csproj",
   "PreviewInSolutionExplorer": false
 }
