@@ -1,16 +1,6 @@
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.csproj.AssemblyReference.cache
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.csproj.SuggestedBindingRedirects.cache
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\MainWindow.g.cs
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\App.g.cs
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze_MarkupCompile.cache
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze_MarkupCompile.lref
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\bin\Debug\TreasureMaze.exe.config
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\bin\Debug\TreasureMaze.exe
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\bin\Debug\TreasureMaze.pdb
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\MainWindow.baml
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.g.resources
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.Properties.Resources.resources
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.csproj.GenerateResource.cache
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.csproj.CoreCompileInputs.cache
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.exe
-C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\TreasureMaze\TreasureMaze\obj\Debug\TreasureMaze.pdb
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze.csproj.AssemblyReference.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze.csproj.SuggestedBindingRedirects.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\MainWindow.g.cs
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\App.g.cs
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze_MarkupCompile.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze_MarkupCompile.lref

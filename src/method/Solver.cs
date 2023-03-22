@@ -1,7 +1,8 @@
 using System;
 using System.Diagnostics;
+using Class;
 
-namespace TreasureMaze
+namespace Method
 {
     public class Solver
     {

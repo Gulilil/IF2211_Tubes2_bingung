@@ -1,6 +1,7 @@
 using System;
+using Class;
 
-namespace TreasureMaze
+namespace Method
 {
     public class DFS : Solver
     {

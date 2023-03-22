@@ -1,7 +1,8 @@
 using System.Drawing;
 using System;
+using Class;
 
-namespace TreasureMaze
+namespace Method
 {
     public class BFS : Solver
     {
