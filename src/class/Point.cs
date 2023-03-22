@@ -1,6 +1,6 @@
 using System;
 
-namespace Class
+namespace src
 {
     public class Point
     {

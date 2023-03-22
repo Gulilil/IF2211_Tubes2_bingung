@@ -67,7 +67,20 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD:TreasureMaze.csproj
 	<!-- <Compile Include="src\class\Map.cs">
+=======
+	<Compile Include="class\Map.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Point.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Tile.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Nodes.cs">
+>>>>>>> aaaa65e01c1ed712bf2d482a2351c3960d8186dd:src/TreasureMaze.csproj
 		<SubType>Code</SubType>
 	</Compile> -->
   </ItemGroup>

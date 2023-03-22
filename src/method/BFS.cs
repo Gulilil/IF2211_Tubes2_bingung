@@ -1,8 +1,7 @@
 using System.Drawing;
 using System;
-using Class;
 
-namespace Method
+namespace src
 {
     public class BFS : Solver
     {

@@ -1,8 +1,7 @@
 using System;
 using System.Diagnostics;
-using Class;
 
-namespace Method
+namespace src
 {
     public class Solver
     {

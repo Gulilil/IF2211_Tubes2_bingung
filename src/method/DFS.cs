@@ -1,7 +1,6 @@
 using System;
-using Class;
 
-namespace Method
+namespace src
 {
     public class DFS : Solver
     {
