@@ -31,17 +31,17 @@ namespace src
             return true;
         }
 
-        public Stack<Point> solve(Route r, Map m){
+        public Stack<Point> solve(Nodes n, Map m){
             Queue<Stack<Point>> q = new Queue<Stack<Point>>(); 
-            Queue<Route> rQueue = new Queue<Route>();
+            Queue<Nodes> nQueue = new Queue<Nodes>();
             Stack<Point> s = new Stack<Point>();
             s.Push(m.getStartLoc());
             q.Enqueue(s);
-            r.setNode(m.getStartLoc());
-            rQueue.Enqueue(r);
+            n.setNode(m.getStartLoc());
+            nQueue.Enqueue(n);
             //int count = 1;
             while (q.Count > 0 && !isAllTreasureTaken(q.Peek(), m.getTreasureLocations())){
-                r = rQueue.Dequeue();
+                n = nQueue.Dequeue();
                 Stack<Point> temp = q.Dequeue();
                 m.setCurLoc(temp.Peek());
                 Point cl = m.getCurLoc();
@@ -62,8 +62,8 @@ namespace src
                                 Stack<Point> temp2 = new Stack<Point>(temp);
                                 Stack<Point> temp1 = new Stack<Point>(temp2);
                                 temp1.Push(newLoc);
-                                r.setUpChild(newLoc);
-                                rQueue.Enqueue(r.getUpChild());
+                                n.setUpChild(newLoc);
+                                nQueue.Enqueue(n.getUpChild());
                                 q.Enqueue(temp1);
                                 noOtherPath = false;
                             }
@@ -77,8 +77,8 @@ namespace src
                                 Stack<Point> temp2 = new Stack<Point>(temp);
                                 Stack<Point> temp1 = new Stack<Point>(temp2);
                                 temp1.Push(newLoc);
-                                r.setLeftChild(newLoc);
-                                rQueue.Enqueue(r.getLeftChild());
+                                n.setLeftChild(newLoc);
+                                nQueue.Enqueue(n.getLeftChild());
                                 q.Enqueue(temp1);
                                 noOtherPath = false;
                             }
@@ -92,8 +92,8 @@ namespace src
                                 Stack<Point> temp2 = new Stack<Point>(temp);
                                 Stack<Point> temp1 = new Stack<Point>(temp2);
                                 temp1.Push(newLoc);
-                                r.setRightChild(newLoc);
-                                rQueue.Enqueue(r.getRightChild());
+                                n.setRightChild(newLoc);
+                                nQueue.Enqueue(n.getRightChild());
                                 q.Enqueue(temp1);
                                 noOtherPath = false;
                             }
@@ -107,8 +107,8 @@ namespace src
                                 Stack<Point> temp2 = new Stack<Point>(temp);
                                 Stack<Point> temp1 = new Stack<Point>(temp2);
                                 temp1.Push(newLoc);
-                                r.setDownChild(newLoc);
-                                rQueue.Enqueue(r.getDownChild());
+                                n.setDownChild(newLoc);
+                                nQueue.Enqueue(n.getDownChild());
                                 q.Enqueue(temp1);
                                 noOtherPath = false;
                             }
@@ -118,19 +118,19 @@ namespace src
                 //count++;
             }
             if (TSP){
-                r = rQueue.Dequeue();
-                while(rQueue.Count > 0)
+                n = nQueue.Dequeue();
+                while(nQueue.Count > 0)
                 {
-                    rQueue.Dequeue();
+                    nQueue.Dequeue();
                 }
-                rQueue.Enqueue(r);
+                nQueue.Enqueue(n);
                 Stack<Point> sol = q.Dequeue();
                 while (q.Count > 0){
                     q.Dequeue();
                 }
                 q.Enqueue(sol);
                 while(!q.Peek().Peek().Equals(m.getStartLoc())){
-                    r = rQueue.Dequeue();
+                    n = nQueue.Dequeue();
                     Stack<Point> temp = q.Dequeue();
                     m.setCurLoc(temp.Peek());
                     Point cl = m.getCurLoc();
@@ -141,8 +141,8 @@ namespace src
                         newLoc.goUp();
                         Stack<Point> temp2 = new Stack<Point>(temp);
                         Stack<Point> temp1 = new Stack<Point>(temp2);
-                        r.setUpChild(newLoc);
-                        rQueue.Enqueue(r);
+                        n.setUpChild(newLoc);
+                        nQueue.Enqueue(n);
                         temp1.Push(newLoc);
                         q.Enqueue(temp1);
                     }
@@ -153,8 +153,8 @@ namespace src
                         newLoc.goLeft();
                         Stack<Point> temp2 = new Stack<Point>(temp);
                         Stack<Point> temp1 = new Stack<Point>(temp2);
-                        r.setLeftChild(newLoc);
-                        rQueue.Enqueue(r);
+                        n.setLeftChild(newLoc);
+                        nQueue.Enqueue(n);
                         temp1.Push(newLoc);
                         q.Enqueue(temp1);
                     }
@@ -165,8 +165,8 @@ namespace src
                         newLoc.goRight();
                         Stack<Point> temp2 = new Stack<Point>(temp);
                         Stack<Point> temp1 = new Stack<Point>(temp2);
-                        r.setRightChild(newLoc);
-                        rQueue.Enqueue(r);
+                        n.setRightChild(newLoc);
+                        nQueue.Enqueue(n);
                         temp1.Push(newLoc);
                         q.Enqueue(temp1);
                     }
@@ -177,8 +177,8 @@ namespace src
                         newLoc.goDown();
                         Stack<Point> temp2 = new Stack<Point>(temp);
                         Stack<Point> temp1 = new Stack<Point>(temp2);
-                        r.setDownChild(newLoc);
-                        rQueue.Enqueue(r);
+                        n.setDownChild(newLoc);
+                        nQueue.Enqueue(n);
                         temp1.Push(newLoc);
                         q.Enqueue(temp1);
                     }

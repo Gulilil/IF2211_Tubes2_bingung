@@ -1,10 +1,10 @@
 using System;
 
 namespace src {
-    public class Route {
-        private Route parent;
+    public class Nodes {
+        private Nodes parent;
         private Point node;
-        private Route[] children;
+        private Nodes[] children;
         /* Maksimum 4 elements, index of:
         0 is UpChildren
         1 is LeftChildren
@@ -13,77 +13,77 @@ namespace src {
         */
         
             // ctor
-        public Route() {
+        public Nodes() {
             this.node = new Point();
             this.parent = null;
-            this.children = new Route[4] {null, null, null, null};
+            this.children = new Nodes[4] {null, null, null, null};
         }
 
-        public Route(Point p){
+        public Nodes(Point p){
             this.node = new Point(p);
             this.parent = null;
-            this.children = new Route[4] {null, null, null, null};
+            this.children = new Nodes[4] {null, null, null, null};
         }
 
         // setter getter
         public void setNode(Point p){
             this.node.copyPoint(p);
         }
-        public void setParent(Route r){
-            this.parent = r;
+        public void setParent(Nodes n){
+            this.parent = n;
         }
         public void setUpChild(Point p){
-            this.children[0] = new Route();
+            this.children[0] = new Nodes();
             this.children[0].setNode(p);
             this.children[0].setParent(this);
         }
         public void setLeftChild(Point p){
-            this.children[1] = new Route();
+            this.children[1] = new Nodes();
             this.children[1].setNode(p);
             this.children[1].setParent(this);
         }
         public void setRightChild(Point p){
-            this.children[2] = new Route();
+            this.children[2] = new Nodes();
             this.children[2].setNode(p);
             this.children[2].setParent(this);
         }
         public void setDownChild(Point p){
-            this.children[3] = new Route();
+            this.children[3] = new Nodes();
             this.children[3].setNode(p);
             this.children[3].setParent(this);
         }
 
-        public Route getParent(){
+        public Nodes getParent(){
             return this.parent;
         }
         public Point getNode(){
             return this.node;
         }
-        public Route[] getChildren(){
+        public Nodes[] getChildren(){
             return this.children;
         }
 
-        public Route getUpChild(){
+        public Nodes getUpChild(){
             return this.children[0];
         }
 
-        public Route getLeftChild(){
+        public Nodes getLeftChild(){
             return this.children[1];
         }
 
-        public Route getRightChild(){
+        public Nodes getRightChild(){
             return this.children[2];
         }
 
-        public Route getDownChild(){
+        public Nodes getDownChild(){
             return this.children[3];
         }
 
         // other methods
         public int getNChild(){
             int count = 0;
-            foreach(Route r in this.children){
-                if (r != null){
+            foreach(Nodes n in this.children){
+                if (n != null){
                     count++;
                 }
             }
@@ -92,9 +92,9 @@ namespace src {
 
         public int getNodesAmount(){
             int count = 1;
-            foreach(Route newR in children){
-                if(newR != null){
-                    count += newR.getNodesAmount();
+            foreach(Nodes newN in children){
+                if(newN != null){
+                    count += newN.getNodesAmount();
                 }
             }
             return count;
@@ -106,9 +106,9 @@ namespace src {
                  System.Console.Write(' ');
             }
             getNode().displayPoint(); System.Console.WriteLine();
-            foreach(Route childR in getChildren()){
-                if (childR != null){
-                    childR.displayRoutes(h, depth+1);
+            foreach(Nodes childN in getChildren()){
+                if (childN != null){
+                    childN.displayRoutes(h, depth+1);
                 }
             }
         }
