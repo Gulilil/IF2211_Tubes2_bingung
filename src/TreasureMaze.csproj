@@ -67,7 +67,16 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="src\class\Map.cs">
+	<Compile Include="class\Map.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Point.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Tile.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="class\Nodes.cs">
 		<SubType>Code</SubType>
 	</Compile>
   </ItemGroup>

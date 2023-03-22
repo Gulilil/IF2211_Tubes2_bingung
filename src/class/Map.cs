@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace src
 {
@@ -210,7 +211,7 @@ namespace src
         public void ReadFile()
         {
             Console.Write("Enter File Name: ");
-            string? fileName = Console.ReadLine();
+            string fileName = Console.ReadLine();
             fileName = fileName + ".txt";
             string path = Directory.GetCurrentDirectory();
             string fullPath = path + "/test/" +fileName;

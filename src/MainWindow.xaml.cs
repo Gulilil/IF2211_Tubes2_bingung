@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using src;
 
 namespace TreasureMaze
 {
@@ -25,7 +26,8 @@ namespace TreasureMaze
     public partial class MainWindow : Window
     {
         private String pathFileMap;
-        private String mode;  
+        private String mode;
+        private Map map;
 
         public MainWindow()
         {
