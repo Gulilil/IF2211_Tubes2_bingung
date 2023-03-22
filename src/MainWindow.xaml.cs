@@ -32,10 +32,10 @@ namespace TreasureMaze
         public MainWindow()
         {
             InitializeComponent();
-            BFS.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickBFS));
-            DFS.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFS));
-            BFSTSP.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickBFSTSP));
-            DFSTSP.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFSTSP));
+            BFSButton.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickBFS));
+            DFSButton.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFS));
+            BFSTSPButton.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickBFSTSP));
+            DFSTSPButton.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFSTSP));
             mode = "BFS";
             map = new Map();
         }
@@ -60,10 +60,10 @@ namespace TreasureMaze
                 int side;
                 if (col > row)
                 {
-                    side = 700/col;
+                    side = 650/col;
                 } else
                 {
-                    side = 700/row;
+                    side = 650/row;
                 }
                 MapBuffer.Width = side * col;
                 MapBuffer.Height = side * row;
@@ -115,46 +115,80 @@ namespace TreasureMaze
         private void PickBFS(object sender, MouseButtonEventArgs e)
         {
             var bc = new BrushConverter();
-            BFS.Fill = (Brush)bc.ConvertFrom("#94AF9F");
-            DFS.Fill = Brushes.White;
-            BFSTSP.Fill = Brushes.White;
-            DFSTSP.Fill = Brushes.White;
+            BFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSButton.Fill = Brushes.White;
+            BFSTSPButton.Fill = Brushes.White;
+            DFSTSPButton.Fill = Brushes.White;
             mode = "BFS";
         }
 
         private void PickDFS(object sender, RoutedEventArgs e)
         {
             var bc = new BrushConverter(); 
-            BFS.Fill = Brushes.White;
-            DFS.Fill = (Brush)bc.ConvertFrom("#94AF9F");
-            BFSTSP.Fill = Brushes.White;
-            DFSTSP.Fill = Brushes.White;
+            BFSButton.Fill = Brushes.White;
+            DFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSTSPButton.Fill = Brushes.White;
+            DFSTSPButton.Fill = Brushes.White;
             mode = "DFS";
         }
 
         private void PickBFSTSP(object sender, RoutedEventArgs e)
         {
             var bc = new BrushConverter(); 
-            BFS.Fill = Brushes.White;
-            DFS.Fill = Brushes.White;
-            BFSTSP.Fill = (Brush)bc.ConvertFrom("#94AF9F");
-            DFSTSP.Fill = Brushes.White;
+            BFSButton.Fill = Brushes.White;
+            DFSButton.Fill = Brushes.White;
+            BFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSTSPButton.Fill = Brushes.White;
             mode = "BFSTSP";
         }
 
         private void PickDFSTSP(object sender, RoutedEventArgs e)
         {
             var bc = new BrushConverter(); 
-            BFS.Fill = Brushes.White;
-            DFS.Fill = Brushes.White;
-            BFSTSP.Fill = Brushes.White;
-            DFSTSP.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSButton.Fill = Brushes.White;
+            DFSButton.Fill = Brushes.White;
+            BFSTSPButton.Fill = Brushes.White;
+            DFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
             mode = "DFSTSP";
         }
 
         private void StartProcess(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("START");
+            if (mode == "BFS")
+            {
+                BFS bfs = new BFS();
+                bfs.getSolution(this.map);
+                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString();
+                stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
+                nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
+                routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+            } else if (mode == "DFS")
+            {
+                DFS dfs = new DFS();
+                dfs.getSolution(this.map);
+                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString();
+                stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
+                nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
+                routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+            } else if (mode == "DFSTSP")
+            {
+                DFS dfs = new DFS();
+                dfs.setTSP(true);
+                dfs.getSolution(this.map);
+                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString();
+                stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
+                nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
+                routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+            } else
+            {
+                BFS bfs = new BFS();
+                bfs.setTSP(true);
+                bfs.getSolution(this.map);
+                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString();
+                stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
+                nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
+                routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+            }
         }
     }
 }

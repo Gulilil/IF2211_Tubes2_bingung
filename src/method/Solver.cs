@@ -1,7 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 
-namespace TreasureMaze
+namespace src
 {
     public class Solver
     {
@@ -11,6 +12,7 @@ namespace TreasureMaze
         protected Point[] solPaths;
         protected Nodes routeNodes;
         protected Stopwatch watch;
+        protected long time;
 
         // ctor
         public Solver()
@@ -21,6 +23,7 @@ namespace TreasureMaze
             this.solPaths = new Point[] {};
             this.routeNodes = new Nodes();
             this.watch = new Stopwatch();
+            this.time = 0;
         }
 
         // setter getter
@@ -58,7 +61,7 @@ namespace TreasureMaze
         }
 
         public long getExecutionTime(){
-            return this.watch.ElapsedMilliseconds;
+            return this.time;
         }
 
         public void getInfo(bool displayNodes){
@@ -166,6 +169,24 @@ namespace TreasureMaze
                 }
             }
             Console.WriteLine(")");
+        }
+
+        public string generateSolutionRoutes()
+        {
+            string str = "(";
+            for (int i = 0; i < this.solRoutes.Length; i++)
+            {
+                if (i == this.solRoutes.Length - 1)
+                {
+                    str += this.solRoutes[i];
+                }
+                else
+                {
+                    str += this.solRoutes[i] + ", ";
+                }
+            }
+            str += ")";
+            return str;
         }
 
         public void displaySolutionPaths(){

@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 
-namespace TreasureMaze
+namespace src
 {
     public class DFS : Solver
     {
@@ -249,6 +250,7 @@ namespace TreasureMaze
 
                 this.steps = solution.Count;
                 this.nodes = routeNodes.getNodesAmount();
+                this.time = this.watch.ElapsedMilliseconds;
                 copySolutionPathsDFS(solution);
                 convertPathsToRoutes();
             } else

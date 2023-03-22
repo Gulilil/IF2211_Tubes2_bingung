@@ -1,7 +1,8 @@
 using System.Drawing;
 using System;
+using System.Collections.Generic;
 
-namespace TreasureMaze
+namespace src
 {
     public class BFS : Solver
     {
@@ -199,6 +200,7 @@ namespace TreasureMaze
                 Stack<Point> solution = solve(routeNodes, m);
                 stopTime();
 
+                this.time = this.watch.ElapsedMilliseconds;
                 this.nodes = routeNodes.getNodesAmount();
                 this.steps = solution.Count;
                 copySolutionPathsBFS(solution);
@@ -208,5 +210,6 @@ namespace TreasureMaze
                 Console.WriteLine("BFS method cannot be done since the map is invalid.");
             }
         }
+
     }
 }

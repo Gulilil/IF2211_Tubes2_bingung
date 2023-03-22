@@ -33,7 +33,7 @@
                 </Button>
             </Grid>
             <DockPanel Margin="0,20,0,0" HorizontalAlignment="Center" Width="300">
-                <Ellipse x:Name="BFS"
+                <Ellipse x:Name="BFSButton"
                 HorizontalAlignment="Left"
                 Margin="20,20,20,20"
                 Width="20"
@@ -42,7 +42,7 @@
                 <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth First Search</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
-                <Ellipse x:Name="DFS"
+                <Ellipse x:Name="DFSButton"
                 HorizontalAlignment="Left"
                 Margin="20,20,20,20"
                 Width="20"
@@ -51,7 +51,7 @@
                 <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Depth First Search</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
-                <Ellipse x:Name="BFSTSP"
+                <Ellipse x:Name="BFSTSPButton"
                 HorizontalAlignment="Left"
                 Margin="20,20,20,20"
                 Width="20"
@@ -60,7 +60,7 @@
                 <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth Travelling Salesman</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
-                <Ellipse x:Name="DFSTSP"
+                <Ellipse x:Name="DFSTSPButton"
                 Margin="20,20,20,20"
                 Width="20"
                 Height="20"
@@ -97,7 +97,7 @@
                         </Bold>
                     </Span>
                 </Label>
-				<Grid x:Name="MapBuffer" Background="#DBE4C6" Width="700" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+				<Grid x:Name="MapBuffer" Background="#DBE4C6" Width="650" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
 				</Grid>
             </Grid>
             <StackPanel Grid.Row="1" >
@@ -119,18 +119,18 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Label FontSize="20" Grid.Column="0">
-                        <Bold>Execution Time:</Bold>
+                    <Label FontSize="20" Grid.Column="0" FontWeight="Bold" x:Name="timeBuffer">
+                        Execution Time:
                     </Label>
-                    <Label FontSize="20" Grid.Column="1">
-                        <Bold>Nodes:</Bold>
+                    <Label FontSize="20" Grid.Column="1" FontWeight="Bold" x:Name="nodesBuffer">
+                        Nodes:
                     </Label>
-                    <Label FontSize="20" Grid.Column="2">
-                        <Bold>Steps:</Bold>
+                    <Label FontSize="20" Grid.Column="2" FontWeight="Bold" x:Name="stepsBuffer">
+                        Steps:
                     </Label>
                 </Grid>
-                <Label FontSize="20" Margin="20 0 0 0">
-                    <Bold>Route:</Bold>
+                <Label FontSize="20" Margin="20 0 0 0" FontWeight="Bold" x:Name="routeBuffer">
+                        Route:
                 </Label>
             </StackPanel>
         </Grid>

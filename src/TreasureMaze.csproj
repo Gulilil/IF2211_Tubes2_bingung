@@ -79,6 +79,15 @@
 	<Compile Include="class\Nodes.cs">
 		<SubType>Code</SubType>
 	</Compile>
+	<Compile Include="method\BFS.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="method\DFS.cs">
+		<SubType>Code</SubType>
+	</Compile>
+	<Compile Include="method\Solver.cs">
+		<SubType>Code</SubType>
+	</Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
