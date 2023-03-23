@@ -113,8 +113,7 @@ After the program successfully the map, validated map will be displayed on the r
         └─ TreasureMaze.csproj
     ├─ test                             # Contains input files for the program
     ├─ .gitignore
-    ├─ README.md
-    └─ TreasureMaze.csproj
+    └─ README.md
 
 
 
