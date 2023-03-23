@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\bin",
-    "\\src\\bin\\Debug",
     "\\src\\class",
     "\\src\\method"
   ],
+  "SelectedNode": "\\src\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
