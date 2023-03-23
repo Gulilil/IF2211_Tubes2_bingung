@@ -20,7 +20,7 @@
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
+		<OutputPath>..\bin\Debug\</OutputPath>
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
@@ -29,7 +29,7 @@
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
+		<OutputPath>..\bin\Release\</OutputPath>
 		<DefineConstants>TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
@@ -63,51 +63,51 @@
 			<DependentUpon>App.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\MainWindow.xaml.cs">
+		<Compile Include="MainWindow.xaml.cs">
 			<DependentUpon>MainWindow.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\class\Map.cs">
+		<Compile Include="class\Map.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\class\Point.cs">
+		<Compile Include="class\Point.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\class\Tile.cs">
+		<Compile Include="class\Tile.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\class\Nodes.cs">
+		<Compile Include="class\Nodes.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\method\BFS.cs">
+		<Compile Include="method\BFS.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\method\DFS.cs">
+		<Compile Include="method\DFS.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="src\method\Solver.cs">
+		<Compile Include="method\Solver.cs">
 			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="Properties\AssemblyInfo.cs">
+		<Compile Include="..\Properties\AssemblyInfo.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="Properties\Resources.Designer.cs">
+		<Compile Include="..\Properties\Resources.Designer.cs">
 			<AutoGen>True</AutoGen>
 			<DesignTime>True</DesignTime>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-		<Compile Include="Properties\Settings.Designer.cs">
+		<Compile Include="..\Properties\Settings.Designer.cs">
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 			<DesignTimeSharedInput>True</DesignTimeSharedInput>
 		</Compile>
-		<EmbeddedResource Include="Properties\Resources.resx">
+		<EmbeddedResource Include="..\Properties\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<None Include="Properties\Settings.settings">
+		<None Include="..\Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
