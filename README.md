@@ -15,26 +15,24 @@
 This program is a treasure-collect and maze-solver program. The maze used by the program will be inputted from a .txt file. Therefore, users can custom the maze by their own willing. After reading section, the contents inside the .txt file will be converted into a matrix. There are several objects inside the maze itself, which are walls, routes, and treasures. The goal of the program is to find a route, from a starting coordinate, to collect all the treasures within the maze. This problem will be solved using BFS (*Breadth-First-Search*) and DFS (*Depth-First-Search*) algorithm. The output of the program is a GUI (*graphical user interface*) to display the solution of the given problems.
 
 ## **Required Program**
-
+Here are the required programs you need to prepare to run the program in this repository:
 | Required Program      | Reference Link |
 |-----------------------|----------------|
 | .Net                  | [.Net](https://dotnet.microsoft.com/en-us/download) |
+| Visual Studio |  [Visual Studio](https://visualstudio.microsoft.com/)|
  
 ## **How to Run The Program**
-Clone this repository </br>
+1. Clone this repository </br>
 ```sh
 git clone https://github.com/Gulilil/Tubes2_bingung.git
 ```
 
-Change the current directory into cloned repository </br>
-```sh
-cd Tubes2_bingung
-```
+2. Open the cloned repository using Visual Studio. </br>
 
-Run the project file using dotnet </br>
-```sh
-dotnet run
-```
+3. In the solution explorer, double click the .csproj file to open it. </br>
+
+4. To run the program, click the button at top center of Visual Studio. The one that indicates it is used to run the program. On the other hand, you can also click 'F5' to run the program. </br>
+
 
 ## **Implemented BFS and DFS Algorithm**
 
