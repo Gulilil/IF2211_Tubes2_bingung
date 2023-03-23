@@ -42,10 +42,15 @@ dotnet run
 
 | Points        | Done  |
 |---------------|-------|
-| BFS Algorithm |   |
-| DFS Algorithm |   |
-| GUI           |   |
-| Bonus : TSP   |   |
+| The program can be compiled without any issues |  &check; |
+| The program can be runned | &check;  |
+| The program can accept and validate input |  &check; |
+| The program successfully solve the given problem using BFS and DFS methods and able to display the solution as an output   |  &check; |
+| The solution given by the program contains the route that visit all the treasures location in the given map    |  &check; |
+| The program can display GUI that contains given minimum specifications for GUI |  &check; |
+| Implemented first bonus aspect (grid finding process) |   |
+| Implemented second bonus aspect (TSP problem solution) | &check; |
+| Implemented third bonus aspect (explanation video) |   |
 
 ## **Authors** 
 | Name | ID |
@@ -58,22 +63,27 @@ dotnet run
 ## **Folders and Files Description**
     .   
     ├─ .vs
-    ├─ bin                              # Contains compiled program, only appear locally if you have tried to compile the program
     ├─ doc                              # Contains complete documentation file of the program
-    ├─ obj                              # Only appear locally if you have tried to compile the program
     ├─ src                              # Contains every algorithm in constructing the program
+        ├─ bin                              # Contains compiled program, only appear locally if you have tried to compile the program
         ├─ class                            # Contains fundamental classes used in the program
             ├─ Map.cs
             ├─ Point.cs
             ├─ Route.cs
             ├─ Tile.cs
-        ├─ dump                             # Used to store unused algorithms
         ├─ method                           # Contains the solving algorithm of the given problem
             ├─ BFS.cs
             ├─ DFS.cs
             ├─ Solver.cs
+        ├─ obj                              # Only appear locally if you have tried to compile the program
+        ├─ Properties
+        ├─ App.config
+        ├─ App.xaml
+        ├─ MainWindow.xaml
+        ├─ MainWindow.xaml.cs
+        ├─ TreasureMaze.csproj
     ├─ test                             # Contains input files for the program
-    ├─ App.csproj
+    ├─ .gitignore
     └─ README.md
 
 
