@@ -251,7 +251,7 @@ namespace Method
                     end = Stopwatch.GetTimestamp();
                 }
 
-                this.steps = solution.Count;
+                this.steps = solution.Count-1;
                 this.nodes = routeNodes.getNodesAmount();
                
 

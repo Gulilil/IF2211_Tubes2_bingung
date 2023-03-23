@@ -51,62 +51,87 @@ namespace TreasureMaze
             if (fileDialog.FileName != "")
             {
                 String pathFileMap = fileDialog.FileName;
+                map = new Map();
                 map.ReadFileAtPath(pathFileMap);
-                
-                MapBuffer.ColumnDefinitions.Clear();
-                MapBuffer.RowDefinitions.Clear();
-                
-                int col = map.getCol();
-                int row = map.getRow();
-                int side;
-                if (col > row)
+
+                if (map.getValid())
                 {
-                    side = 650/col;
-                } else
-                {
-                    side = 650/row;
-                }
-                MapBuffer.Width = side * col;
-                MapBuffer.Height = side * row;
-                var bc = new BrushConverter();
-                MapBuffer.Background = (Brush)bc.ConvertFrom("#000000");
-                for (int i = 0; i < col; i++) {
-                    ColumnDefinition coldef = new ColumnDefinition();
-                    coldef.Width = new GridLength(1, GridUnitType.Star);
-                    MapBuffer.ColumnDefinitions.Add(coldef);
-                }
-                
-                for (int i = 0; i < row; i++) {
-                    RowDefinition rowdef = new RowDefinition();
-                    rowdef.Height = new GridLength(1, GridUnitType.Star);
-                    MapBuffer.RowDefinitions.Add(rowdef);
-                }
-                
-                for (int i = 0; i < row; i++)
-                {
-                    for (int j = 0; j < col; j++)
+
+                    MapBuffer.ColumnDefinitions.Clear();
+                    MapBuffer.RowDefinitions.Clear();
+
+                    int col = map.getCol();
+                    int row = map.getRow();
+                    int side;
+                    if (col > row)
                     {
-                        StackPanel stack = new StackPanel();
-                        Grid.SetRow(stack, i);
-                        Grid.SetColumn(stack, j);
-                        MapBuffer.Children.Add(stack);
-                        if (map.getValueAtCoordinate(new src.Point(i, j)) == 'R')
+                        side = 650 / col;
+                    }
+                    else
+                    {
+                        side = 650 / row;
+                    }
+                    MapBuffer.Width = side * col;
+                    MapBuffer.Height = side * row;
+                    var bc = new BrushConverter();
+                    MapBuffer.Background = (Brush)bc.ConvertFrom("#000000");
+                    for (int i = 0; i < col; i++)
+                    {
+                        ColumnDefinition coldef = new ColumnDefinition();
+                        coldef.Width = new GridLength(1, GridUnitType.Star);
+                        MapBuffer.ColumnDefinitions.Add(coldef);
+                    }
+
+                    for (int i = 0; i < row; i++)
+                    {
+                        RowDefinition rowdef = new RowDefinition();
+                        rowdef.Height = new GridLength(1, GridUnitType.Star);
+                        MapBuffer.RowDefinitions.Add(rowdef);
+                    }
+
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < col; j++)
                         {
-                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
-                        } else if (map.getValueAtCoordinate(new src.Point(i, j)) == 'X')
-                        {
-                            stack.Background = (Brush)bc.ConvertFrom("#245953");
-                        } else if (map.getValueAtCoordinate(new src.Point(i, j)) == 'K')
-                        {
-                            stack.Background = (Brush)bc.ConvertFrom("#19A7CE");
-                        } else
-                        {
-                            stack.Background = (Brush)bc.ConvertFrom("#F7C04A");
+                            StackPanel stack = new StackPanel();
+                            Grid.SetRow(stack, i);
+                            Grid.SetColumn(stack, j);
+                            MapBuffer.Children.Add(stack);
+                            if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'R')
+                            {
+                                stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                            }
+                            else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'X')
+                            {
+                                stack.Background = (Brush)bc.ConvertFrom("#245953");
+                            }
+                            else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'K')
+                            {
+                                stack.Background = (Brush)bc.ConvertFrom("#19A7CE");
+                            }
+                            else
+                            {
+                                stack.Background = (Brush)bc.ConvertFrom("#F7C04A");
+                            }
+
                         }
-                      
                     }
                 }
-            } else
+                else
+                {
+                    // Invalid Map Handling
+                    Debug.WriteLine("Invalid Map Detected.");
+                    MapBuffer.ColumnDefinitions.Clear();
+                    MapBuffer.RowDefinitions.Clear();
+
+                    MapBuffer.Width = 650;
+                    MapBuffer.Height = 650;
+
+                    var bc = new BrushConverter();
+                    MapBuffer.Background = (Brush)bc.ConvertFrom("#EFCFD4");
+                }
+            } 
+            else
             {
                 Debug.WriteLine("Masukkan salah");
             }
