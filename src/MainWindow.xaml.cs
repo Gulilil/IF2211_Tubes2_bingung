@@ -158,7 +158,7 @@ namespace TreasureMaze
             {
                 BFS bfs = new BFS();
                 bfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString();
+                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
                 stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
@@ -167,7 +167,7 @@ namespace TreasureMaze
             {
                 DFS dfs = new DFS();
                 dfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString();
+                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
                 stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
@@ -177,7 +177,7 @@ namespace TreasureMaze
                 DFS dfs = new DFS();
                 dfs.setTSP(true);
                 dfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString();
+                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
                 stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
@@ -187,7 +187,7 @@ namespace TreasureMaze
                 BFS bfs = new BFS();
                 bfs.setTSP(true);
                 bfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString();
+                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
                 stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
                 nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
                 routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();

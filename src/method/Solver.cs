@@ -60,8 +60,8 @@ namespace src
             this.watch.Stop();
         }
 
-        public long getExecutionTime(){
-            return this.time;
+        public double getExecutionTime(){
+            return this.time / 10000.0;
         }
 
         public void getInfo(bool displayNodes){
@@ -183,6 +183,10 @@ namespace src
                 else
                 {
                     str += this.solRoutes[i] + ", ";
+                }
+                if ((i+1) % 35 == 0)
+                {
+                    str += "\n";
                 }
             }
             str += ")";

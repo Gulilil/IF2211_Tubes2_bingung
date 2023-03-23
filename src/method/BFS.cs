@@ -1,6 +1,7 @@
 using System.Drawing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace src
 {
@@ -196,11 +197,11 @@ namespace src
         public void getSolution(Map m){
             if (m.getValid())
             {
-                startTime();
+                long start = Stopwatch.GetTimestamp();
                 Stack<Point> solution = solve(routeNodes, m);
-                stopTime();
+                long end = Stopwatch.GetTimestamp();
 
-                this.time = this.watch.ElapsedMilliseconds;
+                this.time = (end - start);
                 this.nodes = routeNodes.getNodesAmount();
                 this.steps = solution.Count;
                 copySolutionPathsBFS(solution);
