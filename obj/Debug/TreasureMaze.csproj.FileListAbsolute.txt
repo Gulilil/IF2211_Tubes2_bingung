@@ -1,6 +1,0 @@
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze.csproj.AssemblyReference.cache
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze.csproj.SuggestedBindingRedirects.cache
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\MainWindow.g.cs
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\App.g.cs
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze_MarkupCompile.cache
-C:\Folder Kuliah\Sems 4\Stima\Tubes2\obj\Debug\TreasureMaze_MarkupCompile.lref
