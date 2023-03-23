@@ -91,21 +91,21 @@ After the program successfully the map, validated map will be displayed on the r
 ## **Folders and Files Description**
     .   
     ├─ .vs
+    ├─ Properties
     ├─ assets                           # Contains screenshots to be displayed in readme 
     ├─ bin                              # Contains compiled program
     ├─ doc                              # Contains complete documentation file of the program
-    ├─ obj                              # Appear locally if you have tried to compile the program
-    ├─ Properties
     ├─ src                              # Contains every algorithm in constructing the program
         ├─ class                            # Contains fundamental classes used in the program
             ├─ Map.cs
             ├─ Point.cs
             ├─ Route.cs
-            ├─ Tile.cs
+            └─ Tile.cs
         ├─ method                           # Contains the solving algorithm of the given problem
             ├─ BFS.cs
             ├─ DFS.cs
-            ├─ Solver.cs
+            └─ Solver.cs
+        ├─ obj                              # Appear locally if you have tried to compile the program
         ├─ MainWindow.xaml.cs
         ├─ App.config
         ├─ App.xaml
