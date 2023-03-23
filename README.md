@@ -63,6 +63,9 @@ After the program successfully the map, validated map will be displayed on the r
     <li> Nodes represents the amount of created nodes during the solution finding.
     <li> Steps represents the amount of steps, needed to be taken, to travel from the initial grid to all the treasures in the map.
     <li> Route displays the solution's steps direction.
+    <li> Play Route button initiates an animation displayment of the solution route.
+    <li> Play Search button initiates an animation displayment of the solution finding.
+    <li> Interval indicates the delay duration for each grid steps when the animation is played.
 </ul>
 
 
@@ -76,9 +79,9 @@ After the program successfully the map, validated map will be displayed on the r
 | The program successfully solve the given problem using BFS and DFS methods and able to display the solution as an output   |  &check; |
 | The solution given by the program contains the route that visit all the treasures location in the given map    |  &check; |
 | The program can display GUI that contains given minimum specifications for GUI |  &check; |
-| Implemented first bonus aspect (grid finding process) |   |
+| Implemented first bonus aspect (grid finding process) | &check;  |
 | Implemented second bonus aspect (TSP problem solution) | &check; |
-| Implemented third bonus aspect (explanation video) |   |
+| Implemented third bonus aspect (explanation video) |  &check; |
 
 ## **Authors** 
 | Name | ID |
@@ -91,29 +94,29 @@ After the program successfully the map, validated map will be displayed on the r
 ## **Folders and Files Description**
     .   
     ├─ .vs
+    ├─ Properties
     ├─ assets                           # Contains screenshots to be displayed in readme 
     ├─ bin                              # Contains compiled program
     ├─ doc                              # Contains complete documentation file of the program
-    ├─ obj                              # Appear locally if you have tried to compile the program
-    ├─ Properties
     ├─ src                              # Contains every algorithm in constructing the program
         ├─ class                            # Contains fundamental classes used in the program
             ├─ Map.cs
             ├─ Point.cs
             ├─ Route.cs
-            ├─ Tile.cs
+            └─ Tile.cs
         ├─ method                           # Contains the solving algorithm of the given problem
             ├─ BFS.cs
             ├─ DFS.cs
-            ├─ Solver.cs
+            └─ Solver.cs
+        ├─ obj                              # Appear locally if you have tried to compile the program
         ├─ MainWindow.xaml.cs
+        ├─ App.config
+        ├─ App.xaml
+        ├─ MainWindow.xaml
+        └─ TreasureMaze.csproj
     ├─ test                             # Contains input files for the program
     ├─ .gitignore
-    ├─ App.config
-    ├─ App.xaml
-    ├─ MainWindow.xaml
-    ├─ README.md
-    └─ TreasureMaze.csproj
+    └─ README.md
 
 
 
