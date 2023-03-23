@@ -1,0 +1,32 @@
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.csproj.AssemblyReference.cache
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\MainWindow.g.cs
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\App.g.cs
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze_MarkupCompile.cache
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze_MarkupCompile.lref
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\bin\Debug\TreasureMaze.exe.config
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\bin\Debug\TreasureMaze.exe
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\bin\Debug\TreasureMaze.pdb
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\MainWindow.baml
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.g.resources
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.Properties.Resources.resources
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.csproj.GenerateResource.cache
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.exe
+C:\Users\User\Documents\Code\Semester 4\IF2211\Tugas Besar 2\Repository\Tubes2_bingung\src\obj\Debug\TreasureMaze.pdb
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.csproj.AssemblyReference.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.csproj.SuggestedBindingRedirects.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\MainWindow.g.cs
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\App.g.cs
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze_MarkupCompile.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze_MarkupCompile.lref
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.exe
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.pdb
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\bin\Debug\TreasureMaze.exe.config
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\bin\Debug\TreasureMaze.exe
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\bin\Debug\TreasureMaze.pdb
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\MainWindow.baml
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.g.resources
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.Properties.Resources.resources
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.csproj.GenerateResource.cache
+C:\Folder Kuliah\Sems 4\Stima\Tubes2\src\obj\Debug\TreasureMaze.csproj.CoreCompileInputs.cache

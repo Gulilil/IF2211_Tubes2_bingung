@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Class
 {
@@ -210,7 +212,7 @@ namespace Class
         public void ReadFile()
         {
             Console.Write("Enter File Name: ");
-            string? fileName = Console.ReadLine();
+            string fileName = Console.ReadLine();
             fileName = fileName + ".txt";
             string path = Directory.GetCurrentDirectory();
             string fullPath = path + "/test/" +fileName;
@@ -258,6 +260,57 @@ namespace Class
             else
             {
                 Console.WriteLine("Map Reading Failed. Invalid Map Detected.");
+            }
+        }
+
+        public void ReadFileAtPath(String path)
+        {
+            IdentifyFile(path);
+            if (getValid())
+            {
+                this.buffer = new Tile[this.row, this.col];
+                for (int i = 0; i < row; i++)
+                {
+                    for (int j = 0; j < col; j++)
+                    {
+                        this.buffer[i, j] = new Tile();
+                    }
+                }
+                string[] lines = File.ReadAllLines(path);
+
+                int nCol = 0;
+                int nRow = 0;
+                foreach (string line in lines)
+                {
+                    nCol = 0;
+                    foreach (char c in line)
+                    {
+                        if (c != ' ')
+                        {
+                            this.buffer[nRow, nCol].setValue(c);
+
+                            if (c == 'T')
+                            {
+                                this.nTreasure++;
+                                addTreasureLocation(nRow, nCol);
+                            }
+                            else if (c == 'K')
+                            {
+                                this.curLoc = new Point(nRow, nCol);
+                            }
+                            nCol++;
+                        }
+                    }
+                    nRow++;
+                }
+                this.startLoc.copyPoint(this.curLoc);
+          
+                Debug.WriteLine("Masukkan benar");
+            } 
+            else
+            {
+                
+                Debug.WriteLine("Masukkan salah");
             }
         }
     }

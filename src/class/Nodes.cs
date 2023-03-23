@@ -1,7 +1,7 @@
 using System;
 
 namespace Class
- {
+{
     public class Nodes {
         private Nodes parent;
         private Point node;
