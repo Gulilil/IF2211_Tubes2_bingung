@@ -91,6 +91,7 @@ After the program successfully the map, validated map will be displayed on the r
 ## **Folders and Files Description**
     .   
     ├─ .vs
+    ├─ assets                           # Contains screenshots to be displayed in readme 
     ├─ bin                              # Contains compiled program
     ├─ doc                              # Contains complete documentation file of the program
     ├─ obj                              # Appear locally if you have tried to compile the program
