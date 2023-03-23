@@ -107,11 +107,12 @@ After the program successfully the map, validated map will be displayed on the r
             ├─ DFS.cs
             ├─ Solver.cs
         ├─ MainWindow.xaml.cs
+        ├─ App.config
+        ├─ App.xaml
+        ├─ MainWindow.xaml
+        └─ TreasureMaze.csproj
     ├─ test                             # Contains input files for the program
     ├─ .gitignore
-    ├─ App.config
-    ├─ App.xaml
-    ├─ MainWindow.xaml
     ├─ README.md
     └─ TreasureMaze.csproj
 
