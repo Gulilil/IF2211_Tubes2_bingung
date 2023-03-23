@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Class;
 
-namespace src
+namespace Method
 {
     public class DFS : Solver
     {
@@ -232,23 +235,28 @@ namespace src
             {
                 Stack<Point> p = new Stack<Point>();
                 Stack<Point> solution = new Stack<Point>();
+                long start = 0, end = 0;
                 if (!this.TSP)
                 {
-                    startTime();
+                    start = Stopwatch.GetTimestamp();
                     solution = solveOneWay(routeNodes, m, p);
-                    stopTime();
+                    end = Stopwatch.GetTimestamp();
                 }
                 if (this.TSP || solution.Count == 0)
                 {
                     m.resetMap();
                     routeNodes = new Nodes();
-                    startTime();
+                    start = Stopwatch.GetTimestamp();
                     solution = solve(routeNodes, m, p);
-                    stopTime();
+                    end = Stopwatch.GetTimestamp();
                 }
 
                 this.steps = solution.Count;
                 this.nodes = routeNodes.getNodesAmount();
+               
+
+                this.time = (end - start);
+                this.watch = new Stopwatch();
                 copySolutionPathsDFS(solution);
                 convertPathsToRoutes();
             } else

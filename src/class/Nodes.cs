@@ -1,6 +1,6 @@
 using System;
 
-namespace src
+namespace Class
 {
     public class Nodes {
         private Nodes parent;

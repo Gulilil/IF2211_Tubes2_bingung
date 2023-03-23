@@ -1,7 +1,9 @@
-using System.Drawing;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Class;
 
-namespace src
+namespace Method
 {
     public class BFS : Solver
     {
@@ -195,10 +197,11 @@ namespace src
         public void getSolution(Map m){
             if (m.getValid())
             {
-                startTime();
+                long start = Stopwatch.GetTimestamp();
                 Stack<Point> solution = solve(routeNodes, m);
-                stopTime();
+                long end = Stopwatch.GetTimestamp();
 
+                this.time = (end - start);
                 this.nodes = routeNodes.getNodesAmount();
                 this.steps = solution.Count;
                 copySolutionPathsBFS(solution);
@@ -208,5 +211,6 @@ namespace src
                 Console.WriteLine("BFS method cannot be done since the map is invalid.");
             }
         }
+
     }
 }

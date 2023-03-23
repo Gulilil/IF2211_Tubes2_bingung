@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using Class;
 
-namespace src
+namespace Method
 {
     public class Solver
     {
@@ -11,6 +13,7 @@ namespace src
         protected Point[] solPaths;
         protected Nodes routeNodes;
         protected Stopwatch watch;
+        protected long time;
 
         // ctor
         public Solver()
@@ -21,6 +24,7 @@ namespace src
             this.solPaths = new Point[] {};
             this.routeNodes = new Nodes();
             this.watch = new Stopwatch();
+            this.time = 0;
         }
 
         // setter getter
@@ -57,8 +61,8 @@ namespace src
             this.watch.Stop();
         }
 
-        public long getExecutionTime(){
-            return this.watch.ElapsedMilliseconds;
+        public double getExecutionTime(){
+            return this.time / 10000.0;
         }
 
         public void getInfo(bool displayNodes){
@@ -166,6 +170,28 @@ namespace src
                 }
             }
             Console.WriteLine(")");
+        }
+
+        public string generateSolutionRoutes()
+        {
+            string str = "(";
+            for (int i = 0; i < this.solRoutes.Length; i++)
+            {
+                if (i == this.solRoutes.Length - 1)
+                {
+                    str += this.solRoutes[i];
+                }
+                else
+                {
+                    str += this.solRoutes[i] + ", ";
+                }
+                if ((i+1) % 35 == 0)
+                {
+                    str += "\n";
+                }
+            }
+            str += ")";
+            return str;
         }
 
         public void displaySolutionPaths(){

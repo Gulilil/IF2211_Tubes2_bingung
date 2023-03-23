@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace src
+namespace Class
 {
     public class Map
     {
