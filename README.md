@@ -61,9 +61,11 @@ git clone https://github.com/Gulilil/Tubes2_bingung.git
 ## **Folders and Files Description**
     .   
     ├─ .vs
+    ├─ bin                              # Contains compiled program, only appear locally if you have tried to compile the program
     ├─ doc                              # Contains complete documentation file of the program
+    ├─ obj                              # Only appear locally if you have tried to compile the program
+    ├─ Properties
     ├─ src                              # Contains every algorithm in constructing the program
-        ├─ bin                              # Contains compiled program, only appear locally if you have tried to compile the program
         ├─ class                            # Contains fundamental classes used in the program
             ├─ Map.cs
             ├─ Point.cs
@@ -73,15 +75,13 @@ git clone https://github.com/Gulilil/Tubes2_bingung.git
             ├─ BFS.cs
             ├─ DFS.cs
             ├─ Solver.cs
-        ├─ obj                              # Only appear locally if you have tried to compile the program
-        ├─ Properties
-        ├─ App.config
-        ├─ App.xaml
-        ├─ MainWindow.xaml
-        ├─ MainWindow.xaml.cs
-        ├─ TreasureMaze.csproj
     ├─ test                             # Contains input files for the program
     ├─ .gitignore
+    ├─ App.config
+    ├─ App.xaml
+    ├─ MainWindow.xaml
+    ├─ MainWindow.xaml.cs
+    ├─ TreasureMaze.csproj
     └─ README.md
 
 

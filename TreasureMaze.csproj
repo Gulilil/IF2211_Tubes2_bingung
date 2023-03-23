@@ -63,29 +63,29 @@
 			<DependentUpon>App.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="MainWindow.xaml.cs">
+		<Compile Include="src\MainWindow.xaml.cs">
 			<DependentUpon>MainWindow.xaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="class\Map.cs">
+		<Compile Include="src\class\Map.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="class\Point.cs">
+		<Compile Include="src\class\Point.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="class\Tile.cs">
+		<Compile Include="src\class\Tile.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="class\Nodes.cs">
+		<Compile Include="src\class\Nodes.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="method\BFS.cs">
+		<Compile Include="src\method\BFS.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="method\DFS.cs">
+		<Compile Include="src\method\DFS.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="method\Solver.cs">
+		<Compile Include="src\method\Solver.cs">
 			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>

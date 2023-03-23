@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\class",
-    "\\src\\method"
+    "\\src\\method",
+    "\\test"
   ],
-  "SelectedNode": "\\src\\MainWindow.xaml.cs",
+  "SelectedNode": "\\src\\TreasureMaze.csproj",
   "PreviewInSolutionExplorer": false
 }
