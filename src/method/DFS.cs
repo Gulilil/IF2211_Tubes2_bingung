@@ -248,7 +248,7 @@ namespace Method
                     stopTime();
                 }
 
-                this.steps = solution.Count;
+                this.steps = solution.Count-1;
                 this.nodes = routeNodes.getNodesAmount();
                 copySolutionPathsDFS(solution);
                 convertPathsToRoutes();

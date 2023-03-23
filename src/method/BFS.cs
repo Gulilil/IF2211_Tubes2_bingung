@@ -200,7 +200,7 @@ namespace Method
                 stopTime();
 
                 this.nodes = routeNodes.getNodesAmount();
-                this.steps = solution.Count;
+                this.steps = solution.Count-1;
                 copySolutionPathsBFS(solution);
                 convertPathsToRoutes();
             } else
