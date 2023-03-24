@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
     "\\src\\class",
     "\\src\\method"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\src\\TreasureMaze.csproj",
   "PreviewInSolutionExplorer": false
 }
