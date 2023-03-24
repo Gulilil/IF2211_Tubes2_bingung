@@ -47,7 +47,16 @@ namespace TreasureMaze
             map = new Map();
             string name = Directory.GetCurrentDirectory();
             this.rootPath = Directory.GetParent((Directory.GetParent(name)).ToString()).ToString();
-            
+            BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\head.png"));
+            HeadLogo.Source = imgSource;
+            imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\startbtn.png"));
+            StartButton.Source = imgSource;
+            imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\file.png"));
+            FileButton.Source = imgSource;
+            imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\search.png"));
+            SearchButton.Source = imgSource;
+            imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\route.png"));
+            RouteButton.Source = imgSource;
         }
 
         private void ChooseFile(object sender, RoutedEventArgs e)
@@ -439,6 +448,16 @@ namespace TreasureMaze
                     {
                         Image img = new Image();
                         BitmapImage source = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                        img.Source = source;
+                        img.Height = this.side;
+                        img.Width = this.side;
+                        Grid.SetRow(img, listCurLoc[i].getRow());
+                        Grid.SetColumn(img, listCurLoc[i].getCol());
+                        MapBuffer.Children.Add(img);
+                    } else if (this.map.getValueAtCoordinate(listCurLoc[i].getRow(), listCurLoc[i].getCol()) == 'T')
+                    {
+                        Image img = new Image();
+                        BitmapImage source = new BitmapImage(new Uri(this.rootPath + "\\assets\\treasure.png"));
                         img.Source = source;
                         img.Height = this.side;
                         img.Width = this.side;
