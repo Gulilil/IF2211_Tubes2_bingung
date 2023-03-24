@@ -56,8 +56,10 @@ namespace TreasureMaze
             fileDialog.Filter = "Text File (*.txt)|*.txt";
             fileDialog.FilterIndex = 1;
             fileDialog.ShowDialog();
+            var bc = new BrushConverter();
             if (fileDialog.FileName != "")
             {
+                chooseFileButton.Background = (Brush)bc.ConvertFrom("#F8B400");
                 String pathFileMap = fileDialog.FileName;
                 map = new Map();
                 map.ReadFileAtPath(pathFileMap);
@@ -81,7 +83,6 @@ namespace TreasureMaze
                     }
                     MapBuffer.Width = side * col;
                     MapBuffer.Height = side * row;
-                    var bc = new BrushConverter();
                     MapBuffer.Background = (Brush)bc.ConvertFrom("#000000");
                     for (int i = 0; i < col; i++)
                     {
@@ -117,6 +118,7 @@ namespace TreasureMaze
                             else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'K')
                             {
                                 stack.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                                stack.Opacity = 1;
                                 Image image = new Image();
                                 BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
                                 image.Source = imgSource;
@@ -152,8 +154,8 @@ namespace TreasureMaze
                     MapBuffer.Width = 650;
                     MapBuffer.Height = 650;
 
-                    var bc = new BrushConverter();
                     MapBuffer.Background = (Brush)bc.ConvertFrom("#EFCFD4");
+                    this.solPaths = null;
                 }
             } 
             else
@@ -250,6 +252,9 @@ namespace TreasureMaze
                     this.map.resetMap();
                     solPaths = bfs.getSolPaths();
                 }
+            } else
+            {
+                 chooseFileButton.Background = Brushes.Red;
             }
             
         }
@@ -258,6 +263,7 @@ namespace TreasureMaze
         {
             int number;
             var bc = new BrushConverter(); 
+            IntervalBuffer.Background = (Brush)bc.ConvertFrom("#245953");
             bool isNumber = int.TryParse(IntervalBuffer.Text, out number);
             if (this.solPaths != null && isNumber == true && number >= 10 && number <= 1000)
             {
@@ -273,11 +279,32 @@ namespace TreasureMaze
                     MapBuffer.Children.Add(image);
                     await Task.Delay(number);
                     MapBuffer.Children.Remove(image);
-                    StackPanel stack = new StackPanel();
-                    Grid.SetRow(stack, solPaths[i].getRow());
-                    Grid.SetColumn(stack, solPaths[i].getCol());
-                    MapBuffer.Children.Add(stack);
-                    stack.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                    StackPanel stack1 = new StackPanel();
+                    Grid.SetRow(stack1, solPaths[i].getRow());
+                    Grid.SetColumn(stack1, solPaths[i].getCol());
+                    
+                    
+                    var elements = MapBuffer.Children.Cast<UIElement>().Where(el => Grid.GetColumn(el) == solPaths[i].getCol() && Grid.GetRow(el) == solPaths[i].getRow());
+                    int stackidx = elements.Count() - 1;
+                    
+                    
+                    if ((this.map.getValueAtCoordinate(solPaths[i].getRow(), solPaths[i].getCol()) == 'R' && stackidx > 0) || (this.map.getValueAtCoordinate(solPaths[i].getRow(), solPaths[i].getCol()) != 'R' && stackidx > 1))
+                    {
+                        double opacity = (elements.ElementAt(stackidx - 1)).Opacity;
+                        if (opacity == 1) {
+                            opacity = 0;
+                        }
+                        if (opacity + 0.05 < 2)
+                        {
+                            stack1.Background = (Brush)bc.ConvertFrom("#3E3B11");
+                            stack1.Opacity = opacity + 0.06 ;
+                        } 
+
+                    } else
+                    {
+                        stack1.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                    }
+                    MapBuffer.Children.Add(stack1);
                     if (solPaths[i].getRow() == this.map.getStartLoc().getRow() && solPaths[i].getCol() == this.map.getStartLoc().getCol())
                     {
                         Image img = new Image();
@@ -290,6 +317,7 @@ namespace TreasureMaze
                         MapBuffer.Children.Add(img);
                     }
                 }
+                MapBuffer.Children.Clear();
                 for (int i = 0; i < this.map.getRow(); i++)
                 {
                     for (int j = 0; j < this.map.getCol(); j++)
@@ -336,7 +364,14 @@ namespace TreasureMaze
 
             } else 
             {
-                Debug.WriteLine("KOSONG");
+                if (this.solPaths != null)
+                {
+                    IntervalBuffer.Background = Brushes.Red;
+                } else
+                {
+                    chooseFileButton.Background = Brushes.Red;
+                }
+                
             } 
         }
 

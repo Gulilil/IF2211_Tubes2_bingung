@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" HorizontalAlignment="Center" FontFamily="Arial" FontSize="20" Foreground="#94AF9F">Input Your File</Label>
-                <Button x:Name="chooseFileButton" Click="ChooseFile" Grid.Column="1" Width="150" Background="#BBD6B8" BorderBrush="#BBD6B8">
+                <Button x:Name="chooseFileButton" Click="ChooseFile" Grid.Column="1" Width="150" Background="#F8B400" BorderBrush="#F8B400">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -133,25 +133,10 @@
 						</Span>
 					</Button>
 					<Label FontSize="18" Padding="0 0 20 0" VerticalAlignment="Center" Grid.Column ="2" HorizontalAlignment="Right">Interval (ms) (10&#x2264;t&#x2264;1000)</Label>
-				    <TextBox x:Name="IntervalBuffer" Grid.Column="3" Width="150" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize ="18" Text="10" BorderBrush="#BBD6B8">
+				    <TextBox x:Name="IntervalBuffer" Grid.Column="3" Width="150" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize ="18" Text="10" BorderBrush="#245953" Foreground="White" Background="#245953">
 						<TextBox.Resources>
 							<Style TargetType="Border">
 								<Setter Property="CornerRadius" Value="10"/>
-							</Style>
-						    <Style TargetType="TextBox">
-								<Setter Property="Foreground" Value="White"/>
-								<Setter Property="Background" Value="#BBD6B8"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="#BBD6B8"/>
-							            <Setter Property="Background" Value="White"/>
-									    <Setter Property="BorderBrush" Value="#BBD6B8"/>
-                                    </Trigger>
-								    <Trigger Property="IsFocused" Value="False">
-                                        <Setter Property="Foreground" Value="White"/>
-								        <Setter Property="Background" Value="#BBD6B8"/>
-                                    </Trigger>
-                                </Style.Triggers>
 							</Style>
 						</TextBox.Resources>
 					</TextBox>
