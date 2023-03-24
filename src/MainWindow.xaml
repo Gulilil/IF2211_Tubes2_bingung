@@ -12,7 +12,7 @@
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="#245953" >
-            <Label HorizontalAlignment="Center" Padding="0,250,0,40" FontFamily="Arial" FontSize="35" Foreground="#94AF9F">Treasure Maze</Label>
+			<Image x:Name="HeadLogo" HorizontalAlignment="Center" Margin="0 200 0 40" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -26,9 +26,7 @@
                         </Style>
                     </Button.Resources>
                     <Span>
-                        <Bold>
-                            Choose File
-                        </Bold>
+                        <Image x:Name="FileButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
                     </Span>
                 </Button>
             </Grid>
@@ -74,9 +72,7 @@
                     </Style>
                 </Button.Resources>
                 <Span FontSize="25">
-                    <Bold>
-                        START
-                    </Bold>
+					<Image x:Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
                 </Span>
             </Button>
         </StackPanel>
@@ -115,9 +111,7 @@
 							</Style>
 						</Button.Resources>
 						<Span FontSize="23">
-							<Bold>
-								PLAY ROUTE
-							</Bold>
+							<Image x:Name="RouteButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
 						</Span>
 					</Button>
 					<Button Width="200" Background="#F8B400" BorderBrush="#BBD6B8" Grid.Column ="1" HorizontalAlignment="Right" Click="PlaySearch">
@@ -127,9 +121,7 @@
 							</Style>
 						</Button.Resources>
 						<Span FontSize="23">
-							<Bold>
-								PLAY SEARCH
-							</Bold>
+							<Image x:Name="SearchButton" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
 						</Span>
 					</Button>
 					<Label FontSize="18" Padding="0 0 20 0" VerticalAlignment="Center" Grid.Column ="2" HorizontalAlignment="Right">Interval (ms) (10&#x2264;t&#x2264;1000)</Label>
