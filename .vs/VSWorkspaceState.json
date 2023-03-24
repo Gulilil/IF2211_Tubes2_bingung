@@ -1,11 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Properties",
     "\\src",
     "\\src\\class",
-    "\\src\\method"
+    "\\src\\method",
+    "\\test"
   ],
-  "SelectedNode": "\\src\\TreasureMaze.csproj",
+  "SelectedNode": "\\src\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

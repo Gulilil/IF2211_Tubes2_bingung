@@ -34,6 +34,7 @@ namespace TreasureMaze
         private Class.Point[] solPaths;
         private double side;
         private string rootPath;
+        private Class.Point[] listCurLoc;
 
         public MainWindow()
         {
@@ -220,6 +221,7 @@ namespace TreasureMaze
                     routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
                     this.map.resetMap();
                     solPaths = bfs.getSolPaths();
+                    listCurLoc = bfs.getListCurLoc();
                 } else if (mode == "DFS")
                 {
                     DFS dfs = new DFS();
@@ -230,6 +232,7 @@ namespace TreasureMaze
                     routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
                     this.map.resetMap();
                     solPaths = dfs.getSolPaths();
+                    listCurLoc = dfs.getListCurLoc();
                 } else if (mode == "DFSTSP")
                 {
                     DFS dfs = new DFS();
@@ -241,6 +244,7 @@ namespace TreasureMaze
                     routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
                     this.map.resetMap();
                     solPaths = dfs.getSolPaths();
+                    listCurLoc = dfs.getListCurLoc();
                 } else if (mode == "BFSTSP") 
                 {
                     BFS bfs = new BFS();
@@ -252,6 +256,7 @@ namespace TreasureMaze
                     routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
                     this.map.resetMap();
                     solPaths = bfs.getSolPaths();
+                    listCurLoc = bfs.getListCurLoc();
                 }
             } else
             {
@@ -376,8 +381,130 @@ namespace TreasureMaze
             } 
         }
 
-        private void PlaySearch(object sender, RoutedEventArgs e)
+        private async void PlaySearch(object sender, RoutedEventArgs e)
         {
+            int number;
+            var bc = new BrushConverter();
+            IntervalBuffer.Background = (Brush)bc.ConvertFrom("#245953");
+            bool isNumber = int.TryParse(IntervalBuffer.Text, out number);
+            if (this.listCurLoc != null && isNumber == true && number >= 10 && number <= 1000)
+            {
+                for (int i = 0; i < listCurLoc.Length; i++)
+                {
+                    // Image image = new Image();
+                    // BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\programmer.png"));
+                    // image.Source = imgSource;
+                    // image.Height = this.side;
+                    // image.Width = this.side;
+                    // Grid.SetRow(image, listCurLoc[i].getRow());
+                    // Grid.SetColumn(image, listCurLoc[i].getCol());
+                    // MapBuffer.Children.Add(image);
+                    StackPanel stack2 = new StackPanel();
+                    Grid.SetRow(stack2, listCurLoc[i].getRow());
+                    Grid.SetColumn(stack2, listCurLoc[i].getCol());
+                    stack2.Background = (Brush)bc.ConvertFrom("Blue");
+                    MapBuffer.Children.Add(stack2);
+                    await Task.Delay(number);
+                    MapBuffer.Children.Remove(stack2);
+                    // MapBuffer.Children.Remove(image);
+                    StackPanel stack1 = new StackPanel();
+                    Grid.SetRow(stack1, listCurLoc[i].getRow());
+                    Grid.SetColumn(stack1, listCurLoc[i].getCol());
+
+
+                    var elements = MapBuffer.Children.Cast<UIElement>().Where(el => Grid.GetColumn(el) == listCurLoc[i].getCol() && Grid.GetRow(el) == listCurLoc[i].getRow());
+                    int stackidx = elements.Count() - 1;
+
+
+                    if ((this.map.getValueAtCoordinate(listCurLoc[i].getRow(), listCurLoc[i].getCol()) == 'R' && stackidx > 0) || (this.map.getValueAtCoordinate(listCurLoc[i].getRow(), listCurLoc[i].getCol()) != 'R' && stackidx > 1))
+                    {
+                        double opacity = (elements.ElementAt(stackidx - 1)).Opacity;
+                        if (opacity == 1)
+                        {
+                            opacity = 0;
+                        }
+                        if (opacity + 0.05 < 2)
+                        {
+                            stack1.Background = (Brush)bc.ConvertFrom("#3E3B11");
+                            stack1.Opacity = opacity + 0.06;
+                        }
+
+                    }
+                    else
+                    {
+                        stack1.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                    }
+                    MapBuffer.Children.Add(stack1);
+                    if (listCurLoc[i].getRow() == this.map.getStartLoc().getRow() && listCurLoc[i].getCol() == this.map.getStartLoc().getCol())
+                    {
+                        Image img = new Image();
+                        BitmapImage source = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                        img.Source = source;
+                        img.Height = this.side;
+                        img.Width = this.side;
+                        Grid.SetRow(img, listCurLoc[i].getRow());
+                        Grid.SetColumn(img, listCurLoc[i].getCol());
+                        MapBuffer.Children.Add(img);
+                    }
+                }
+                MapBuffer.Children.Clear();
+                for (int i = 0; i < this.map.getRow(); i++)
+                {
+                    for (int j = 0; j < this.map.getCol(); j++)
+                    {
+                        StackPanel stack = new StackPanel();
+                        Grid.SetRow(stack, i);
+                        Grid.SetColumn(stack, j);
+                        MapBuffer.Children.Add(stack);
+                        if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'R')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                        }
+                        else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'X')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#245953");
+                        }
+                        else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'K')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                            Image image = new Image();
+                            BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                            image.Source = imgSource;
+                            image.Height = this.side;
+                            image.Width = this.side;
+                            Grid.SetRow(image, i);
+                            Grid.SetColumn(image, j);
+                            MapBuffer.Children.Add(image);
+                        }
+                        else
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                            Image image = new Image();
+                            BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\treasure.png"));
+                            image.Source = imgSource;
+                            image.Height = this.side;
+                            image.Width = this.side;
+                            Grid.SetRow(image, i);
+                            Grid.SetColumn(image, j);
+                            MapBuffer.Children.Add(image);
+                        }
+
+                    }
+                }
+
+            }
+            else
+            {
+                if (this.listCurLoc != null)
+                {
+                    IntervalBuffer.Background = Brushes.Red;
+                }
+                else
+                {
+                    chooseFileButton.Background = Brushes.Red;
+                }
+
+            }
 
         }
 

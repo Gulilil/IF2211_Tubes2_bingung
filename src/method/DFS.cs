@@ -108,6 +108,9 @@ namespace Method
         public Stack<Point> solve(Nodes n, Map m, Stack<Point> p)
         {
             Point cl = m.getCurLoc();
+            Point[] clList = getListCurLoc();
+            clList = insertLastPaths(clList, cl);
+            setListCurLoc(clList);
             p.Push(cl);
             m.increaseVCAtCoordinate(cl);
 

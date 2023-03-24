@@ -14,6 +14,7 @@ namespace Method
         protected Nodes routeNodes;
         protected Stopwatch watch;
         protected long time;
+        protected Point[] listCurLoc;
 
         // ctor
         public Solver()
@@ -25,6 +26,7 @@ namespace Method
             this.routeNodes = new Nodes();
             this.watch = new Stopwatch();
             this.time = 0;
+            this.listCurLoc = new Point[] {};
         }
 
         // setter getter
@@ -63,6 +65,14 @@ namespace Method
 
         public double getExecutionTime(){
             return this.time / 10000.0;
+        }
+        public Point[] getListCurLoc()
+        {
+            return this.listCurLoc;
+        }
+        public void setListCurLoc(Point[] newListCurLoc)
+        {
+            this.listCurLoc = newListCurLoc;
         }
 
         public void getInfo(bool displayNodes){

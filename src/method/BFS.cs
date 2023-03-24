@@ -47,6 +47,9 @@ namespace Method
                 Stack<Point> temp = q.Dequeue();
                 m.setCurLoc(temp.Peek());
                 Point cl = m.getCurLoc();
+                Point[] clList = getListCurLoc();
+                clList = insertLastPaths(clList, cl);
+                setListCurLoc(clList);
                 m.increaseVCAtCoordinate(cl);
                 bool noOtherPath = true;
                 for(int i = 0; i < 3; i++){
@@ -136,6 +139,9 @@ namespace Method
                     Stack<Point> temp = q.Dequeue();
                     m.setCurLoc(temp.Peek());
                     Point cl = m.getCurLoc();
+                    Point[] clList = getListCurLoc();
+                    clList = insertLastPaths(clList, cl);
+                    setListCurLoc(clList);
                     if (cl.getRow() != 0 && m.getValueAtCoordinate(cl.getRow() - 1, cl.getCol()) != 'X')
                     {
                         // check Up
