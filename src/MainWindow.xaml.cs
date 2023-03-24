@@ -168,7 +168,7 @@ namespace TreasureMaze
         private void PickBFS(object sender, MouseButtonEventArgs e)
         {
             var bc = new BrushConverter();
-            BFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             DFSButton.Fill = Brushes.White;
             BFSTSPButton.Fill = Brushes.White;
             DFSTSPButton.Fill = Brushes.White;
@@ -179,7 +179,7 @@ namespace TreasureMaze
         {
             var bc = new BrushConverter(); 
             BFSButton.Fill = Brushes.White;
-            DFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             BFSTSPButton.Fill = Brushes.White;
             DFSTSPButton.Fill = Brushes.White;
             mode = "DFS";
@@ -190,7 +190,7 @@ namespace TreasureMaze
             var bc = new BrushConverter(); 
             BFSButton.Fill = Brushes.White;
             DFSButton.Fill = Brushes.White;
-            BFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSTSPButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             DFSTSPButton.Fill = Brushes.White;
             mode = "BFSTSP";
         }
@@ -201,7 +201,7 @@ namespace TreasureMaze
             BFSButton.Fill = Brushes.White;
             DFSButton.Fill = Brushes.White;
             BFSTSPButton.Fill = Brushes.White;
-            DFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSTSPButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             mode = "DFSTSP";
         }
 

@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin\\Release",
+    "\\Properties",
+    "\\src",
     "\\src\\class",
     "\\src\\method"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
