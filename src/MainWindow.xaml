@@ -11,7 +11,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="#DBE4C6" >
+        <StackPanel Grid.Column="0" Background="#245953" >
             <Label HorizontalAlignment="Center" Padding="0,250,0,40" FontFamily="Arial" FontSize="35" Foreground="#94AF9F">Treasure Maze</Label>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" HorizontalAlignment="Center" FontFamily="Arial" FontSize="20" Foreground="#94AF9F">Input Your File</Label>
-                <Button x:Name="chooseFileButton" Click="ChooseFile" Grid.Column="1" Width="150" Background="#BBD6B8" BorderBrush="#BBD6B8">
+                <Button x:Name="chooseFileButton" Click="ChooseFile" Grid.Column="1" Width="150" Background="#F8B400" BorderBrush="#F8B400">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -38,8 +38,8 @@
                 Margin="20,20,20,20"
                 Width="20"
                 Height="20"
-                Fill="#94AF9F"/>
-                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth First Search</Label>
+                Fill="#F8B400"/>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18" Foreground="White">Breadth First Search</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
                 <Ellipse x:Name="DFSButton"
@@ -48,7 +48,7 @@
                 Width="20"
                 Height="20"
                 Fill="White"/>
-                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Depth First Search</Label>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18" Foreground="White">Depth First Search</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
                 <Ellipse x:Name="BFSTSPButton"
@@ -57,7 +57,7 @@
                 Width="20"
                 Height="20"
                 Fill="White"/>
-                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Breadth Travelling Salesman</Label>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18" Foreground="White">Breadth Travelling Salesman</Label>
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Width="300">
                 <Ellipse x:Name="DFSTSPButton"
@@ -65,9 +65,9 @@
                 Width="20"
                 Height="20"
                 Fill="White"/>
-                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18">Depth Travelling Salesman</Label>
+                <Label Grid.ColumnSpan="2" VerticalAlignment="Center" FontSize="18" Foreground="White">Depth Travelling Salesman</Label>
             </DockPanel>
-            <Button Grid.Column="1" Width="150" Background="#BBD6B8" BorderBrush="#BBD6B8" Margin="0,20,0,0" Click="StartProcess">
+            <Button Grid.Column="1" Width="150" Background="#F8B400" BorderBrush="#BBD6B8" Margin="0,20,0,0" Click="StartProcess">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -97,22 +97,50 @@
                         </Bold>
                     </Span>
                 </Label>
-				<Grid x:Name="MapBuffer" Background="#DBE4C6" Width="650" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+				<Grid x:Name="MapBuffer" Background="#245953" Width="650" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
 				</Grid>
             </Grid>
             <StackPanel Grid.Row="1" >
-                <Button Width="200" Background="#BBD6B8" BorderBrush="#BBD6B8" Margin="0,10,0,15">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                    <Span FontSize="25">
-                        <Bold>
-                            PLAY ROUTE
-                        </Bold>
-                    </Span>
-                </Button>
+				<Grid Margin="0,10,0,15">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width ="1*"/>
+						<ColumnDefinition Width ="1*"/>
+						<ColumnDefinition Width ="1*"/>
+						<ColumnDefinition Width ="1*"/>
+					</Grid.ColumnDefinitions>
+					<Button Width="200" Background="#F8B400" BorderBrush="#BBD6B8" Grid.Column ="0" HorizontalAlignment="Right" Click="PlayRoute">
+						<Button.Resources>
+							<Style TargetType="Border">
+								<Setter Property="CornerRadius" Value="10"/>
+							</Style>
+						</Button.Resources>
+						<Span FontSize="23">
+							<Bold>
+								PLAY ROUTE
+							</Bold>
+						</Span>
+					</Button>
+					<Button Width="200" Background="#F8B400" BorderBrush="#BBD6B8" Grid.Column ="1" HorizontalAlignment="Right" Click="PlaySearch">
+						<Button.Resources>
+							<Style TargetType="Border">
+								<Setter Property="CornerRadius" Value="10"/>
+							</Style>
+						</Button.Resources>
+						<Span FontSize="23">
+							<Bold>
+								PLAY SEARCH
+							</Bold>
+						</Span>
+					</Button>
+					<Label FontSize="18" Padding="0 0 20 0" VerticalAlignment="Center" Grid.Column ="2" HorizontalAlignment="Right">Interval (ms) (10&#x2264;t&#x2264;1000)</Label>
+				    <TextBox x:Name="IntervalBuffer" Grid.Column="3" Width="150" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize ="18" Text="10" BorderBrush="#245953" Foreground="White" Background="#245953">
+						<TextBox.Resources>
+							<Style TargetType="Border">
+								<Setter Property="CornerRadius" Value="10"/>
+							</Style>
+						</TextBox.Resources>
+					</TextBox>
+				</Grid>
                 <Grid Margin="20 0 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>

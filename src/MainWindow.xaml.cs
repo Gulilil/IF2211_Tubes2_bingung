@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Class;
 using Method;
+using System.Threading;
 
 namespace TreasureMaze
 {
@@ -29,6 +31,9 @@ namespace TreasureMaze
     {
         private String mode;
         private Map map;
+        private Class.Point[] solPaths;
+        private double side;
+        private string rootPath;
 
         public MainWindow()
         {
@@ -39,6 +44,9 @@ namespace TreasureMaze
             DFSTSPButton.AddHandler(Ellipse.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PickDFSTSP));
             mode = "BFS";
             map = new Map();
+            string name = Directory.GetCurrentDirectory();
+            this.rootPath = Directory.GetParent((Directory.GetParent(name)).ToString()).ToString();
+            
         }
 
         private void ChooseFile(object sender, RoutedEventArgs e)
@@ -48,8 +56,10 @@ namespace TreasureMaze
             fileDialog.Filter = "Text File (*.txt)|*.txt";
             fileDialog.FilterIndex = 1;
             fileDialog.ShowDialog();
+            var bc = new BrushConverter();
             if (fileDialog.FileName != "")
             {
+                chooseFileButton.Background = (Brush)bc.ConvertFrom("#F8B400");
                 String pathFileMap = fileDialog.FileName;
                 map = new Map();
                 map.ReadFileAtPath(pathFileMap);
@@ -73,7 +83,6 @@ namespace TreasureMaze
                     }
                     MapBuffer.Width = side * col;
                     MapBuffer.Height = side * row;
-                    var bc = new BrushConverter();
                     MapBuffer.Background = (Brush)bc.ConvertFrom("#000000");
                     for (int i = 0; i < col; i++)
                     {
@@ -82,6 +91,7 @@ namespace TreasureMaze
                         MapBuffer.ColumnDefinitions.Add(coldef);
                     }
 
+                    this.side = side;
                     for (int i = 0; i < row; i++)
                     {
                         RowDefinition rowdef = new RowDefinition();
@@ -107,11 +117,28 @@ namespace TreasureMaze
                             }
                             else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'K')
                             {
-                                stack.Background = (Brush)bc.ConvertFrom("#19A7CE");
+                                stack.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                                stack.Opacity = 1;
+                                Image image = new Image();
+                                BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                                image.Source = imgSource;
+                                image.Height = this.side;
+                                image.Width = this.side;
+                                Grid.SetRow(image, i);
+                                Grid.SetColumn(image, j);
+                                MapBuffer.Children.Add(image);
                             }
                             else
                             {
-                                stack.Background = (Brush)bc.ConvertFrom("#F7C04A");
+                                stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                                Image image = new Image();
+                                BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\treasure.png"));
+                                image.Source = imgSource;
+                                image.Height = this.side;
+                                image.Width = this.side;
+                                Grid.SetRow(image, i);
+                                Grid.SetColumn(image, j);
+                                MapBuffer.Children.Add(image);
                             }
 
                         }
@@ -127,8 +154,9 @@ namespace TreasureMaze
                     MapBuffer.Width = 650;
                     MapBuffer.Height = 650;
 
-                    var bc = new BrushConverter();
+                    chooseFileButton.Background = Brushes.Red;
                     MapBuffer.Background = (Brush)bc.ConvertFrom("#EFCFD4");
+                    this.solPaths = null;
                 }
             } 
             else
@@ -141,7 +169,7 @@ namespace TreasureMaze
         private void PickBFS(object sender, MouseButtonEventArgs e)
         {
             var bc = new BrushConverter();
-            BFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             DFSButton.Fill = Brushes.White;
             BFSTSPButton.Fill = Brushes.White;
             DFSTSPButton.Fill = Brushes.White;
@@ -152,7 +180,7 @@ namespace TreasureMaze
         {
             var bc = new BrushConverter(); 
             BFSButton.Fill = Brushes.White;
-            DFSButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             BFSTSPButton.Fill = Brushes.White;
             DFSTSPButton.Fill = Brushes.White;
             mode = "DFS";
@@ -163,7 +191,7 @@ namespace TreasureMaze
             var bc = new BrushConverter(); 
             BFSButton.Fill = Brushes.White;
             DFSButton.Fill = Brushes.White;
-            BFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            BFSTSPButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             DFSTSPButton.Fill = Brushes.White;
             mode = "BFSTSP";
         }
@@ -174,51 +202,184 @@ namespace TreasureMaze
             BFSButton.Fill = Brushes.White;
             DFSButton.Fill = Brushes.White;
             BFSTSPButton.Fill = Brushes.White;
-            DFSTSPButton.Fill = (Brush)bc.ConvertFrom("#94AF9F");
+            DFSTSPButton.Fill = (Brush)bc.ConvertFrom("#F8B400");
             mode = "DFSTSP";
         }
 
         private void StartProcess(object sender, RoutedEventArgs e)
-        {
-            if (mode == "BFS")
+        {   
+            if (this.map.getCol() != 0 && this.map.getRow() != 0)
             {
-                BFS bfs = new BFS();
-                bfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
-                stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
-                nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
-                routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
-                this.map.resetMap();
-            } else if (mode == "DFS")
-            {
-                DFS dfs = new DFS();
-                dfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
-                stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
-                nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
-                routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
-                this.map.resetMap();
-            } else if (mode == "DFSTSP")
-            {
-                DFS dfs = new DFS();
-                dfs.setTSP(true);
-                dfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
-                stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
-                nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
-                routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
-                this.map.resetMap();
+                if (mode == "BFS")
+                {
+                    BFS bfs = new BFS();
+                    bfs.getSolution(this.map);
+                    timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
+                    stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
+                    nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
+                    routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+                    this.map.resetMap();
+                    solPaths = bfs.getSolPaths();
+                } else if (mode == "DFS")
+                {
+                    DFS dfs = new DFS();
+                    dfs.getSolution(this.map);
+                    timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
+                    stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
+                    nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
+                    routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+                    this.map.resetMap();
+                    solPaths = dfs.getSolPaths();
+                } else if (mode == "DFSTSP")
+                {
+                    DFS dfs = new DFS();
+                    dfs.setTSP(true);
+                    dfs.getSolution(this.map);
+                    timeBuffer.Content =  "Execution Time: " + dfs.getExecutionTime().ToString() + " ms";
+                    stepsBuffer.Content = "Steps: " + dfs.getSteps().ToString();
+                    nodesBuffer.Content = "Nodes: " + dfs.getNodes().ToString();
+                    routeBuffer.Content = "Route: " + dfs.generateSolutionRoutes();
+                    this.map.resetMap();
+                    solPaths = dfs.getSolPaths();
+                } else if (mode == "BFSTSP") 
+                {
+                    BFS bfs = new BFS();
+                    bfs.setTSP(true);
+                    bfs.getSolution(this.map);
+                    timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
+                    stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
+                    nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
+                    routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
+                    this.map.resetMap();
+                    solPaths = bfs.getSolPaths();
+                }
             } else
             {
-                BFS bfs = new BFS();
-                bfs.setTSP(true);
-                bfs.getSolution(this.map);
-                timeBuffer.Content =  "Execution Time: " + bfs.getExecutionTime().ToString() + " ms";
-                stepsBuffer.Content = "Steps: " + bfs.getSteps().ToString();
-                nodesBuffer.Content = "Nodes: " + bfs.getNodes().ToString();
-                routeBuffer.Content = "Route: " + bfs.generateSolutionRoutes();
-                this.map.resetMap();
+                 chooseFileButton.Background = Brushes.Red;
             }
+            
         }
+
+        private async void PlayRoute(object sender, RoutedEventArgs e)
+        {
+            int number;
+            var bc = new BrushConverter(); 
+            IntervalBuffer.Background = (Brush)bc.ConvertFrom("#245953");
+            bool isNumber = int.TryParse(IntervalBuffer.Text, out number);
+            if (this.solPaths != null && isNumber == true && number >= 10 && number <= 1000)
+            {
+                for (int i = 0; i < solPaths.Length;i++)
+                {
+                    Image image = new Image();
+                    BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\programmer.png"));
+                    image.Source = imgSource;
+                    image.Height = this.side;
+                    image.Width = this.side;
+                    Grid.SetRow(image, solPaths[i].getRow());
+                    Grid.SetColumn(image, solPaths[i].getCol());
+                    MapBuffer.Children.Add(image);
+                    await Task.Delay(number);
+                    MapBuffer.Children.Remove(image);
+                    StackPanel stack1 = new StackPanel();
+                    Grid.SetRow(stack1, solPaths[i].getRow());
+                    Grid.SetColumn(stack1, solPaths[i].getCol());
+                    
+                    
+                    var elements = MapBuffer.Children.Cast<UIElement>().Where(el => Grid.GetColumn(el) == solPaths[i].getCol() && Grid.GetRow(el) == solPaths[i].getRow());
+                    int stackidx = elements.Count() - 1;
+                    
+                    
+                    if ((this.map.getValueAtCoordinate(solPaths[i].getRow(), solPaths[i].getCol()) == 'R' && stackidx > 0) || (this.map.getValueAtCoordinate(solPaths[i].getRow(), solPaths[i].getCol()) != 'R' && stackidx > 1))
+                    {
+                        double opacity = (elements.ElementAt(stackidx - 1)).Opacity;
+                        if (opacity == 1) {
+                            opacity = 0;
+                        }
+                        if (opacity + 0.05 < 2)
+                        {
+                            stack1.Background = (Brush)bc.ConvertFrom("#3E3B11");
+                            stack1.Opacity = opacity + 0.06 ;
+                        } 
+
+                    } else
+                    {
+                        stack1.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                    }
+                    MapBuffer.Children.Add(stack1);
+                    if (solPaths[i].getRow() == this.map.getStartLoc().getRow() && solPaths[i].getCol() == this.map.getStartLoc().getCol())
+                    {
+                        Image img = new Image();
+                        BitmapImage source = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                        img.Source = source;
+                        img.Height = this.side;
+                        img.Width = this.side;
+                        Grid.SetRow(img, solPaths[i].getRow());
+                        Grid.SetColumn(img, solPaths[i].getCol());
+                        MapBuffer.Children.Add(img);
+                    }
+                }
+                MapBuffer.Children.Clear();
+                for (int i = 0; i < this.map.getRow(); i++)
+                {
+                    for (int j = 0; j < this.map.getCol(); j++)
+                    {
+                        StackPanel stack = new StackPanel();
+                        Grid.SetRow(stack, i);
+                        Grid.SetColumn(stack, j);
+                        MapBuffer.Children.Add(stack);
+                        if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'R')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                        }
+                        else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'X')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#245953");
+                        }
+                        else if (map.getValueAtCoordinate(new Class.Point(i, j)) == 'K')
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#EAE7B1");
+                            Image image = new Image();
+                            BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\start.png"));
+                            image.Source = imgSource;
+                            image.Height = this.side;
+                            image.Width = this.side;
+                            Grid.SetRow(image, i);
+                            Grid.SetColumn(image, j);
+                            MapBuffer.Children.Add(image);
+                        }
+                        else
+                        {
+                            stack.Background = (Brush)bc.ConvertFrom("#FAEDCD");
+                            Image image = new Image();
+                            BitmapImage imgSource = new BitmapImage(new Uri(this.rootPath + "\\assets\\treasure.png"));
+                            image.Source = imgSource;
+                            image.Height = this.side;
+                            image.Width = this.side;
+                            Grid.SetRow(image, i);
+                            Grid.SetColumn(image, j);
+                            MapBuffer.Children.Add(image);
+                        }
+
+                    }
+                }
+
+            } else 
+            {
+                if (this.solPaths != null)
+                {
+                    IntervalBuffer.Background = Brushes.Red;
+                } else
+                {
+                    chooseFileButton.Background = Brushes.Red;
+                }
+                
+            } 
+        }
+
+        private void PlaySearch(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

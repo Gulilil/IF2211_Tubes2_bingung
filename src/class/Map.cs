@@ -188,22 +188,28 @@ namespace Class
         // read file
         public void IdentifyFile(string textFile)
         {
+            int kCount = 0;
             int nCol = 0;
             int nRow = 0;
             string[] lines = File.ReadAllLines(textFile);
             foreach (string line in lines){
-                if (nCol == 0){
-                    foreach(char c in line){
-                        if (c != ' '){
-                            nCol++;
-                            if (c != 'K' && c != 'X' && c!= 'R' && c != 'T')
-                            {
-                                setValidFalse();
-                            }
+                nCol = 0;
+                foreach(char c in line){
+                    if (c != ' '){
+                        nCol++;
+                        if (c == 'K'){
+                            kCount++;
+                        }
+                        if (c != 'K' && c != 'X' && c!= 'R' && c != 'T')
+                        {
+                            setValidFalse();
                         }
                     }
                 }
                 nRow++;
+            }
+            if (kCount > 1){
+                setValidFalse();
             }
             this.setCol(nCol);
             this.setRow(nRow);
